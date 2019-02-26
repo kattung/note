@@ -1,0 +1,37 @@
+* show which files in git repository:
+# git ls-tree --full-tree -r HEAD
+
+
+- git clone    (Download the whole repository)
+# git clone http://git.denx.de/u-boot.git
+  git clone -s -l  (Used when clone local directory in the same computer,
+                    the '-s -l' parameter avoid create hard link in the new repository)
+
+
+- git pull  (Download and update current branch)
+
+- git fetch                   (Download from remote repository)
+  git fetch <remote>          (Download all branches from remote repository>
+  git fetch <remote> <branch> (Download certain branch from remote repository>
+
+
+- git branch      (Show all local branches)
+  git branch -a   (Show all local and remote branches)
+
+
+- git checkout
+  git checkout <branch>    (Switch to another branch)
+  git checkout <file>      (Abandant change of file, and reset to the one in git repository)
+  git checkout -b <new_branch>               (Create a new branch cloned from current branch and switch to new)
+  git checkout -b <new_branch> <old_branch>  (Create a new branch cloned from old branch and switch to new)
+  git checkout -b <new_branch> <commit/tag>  (Create a new branch cloned from commit/tag and switch to new)
+
+
+- git remote
+  git remote show             (Show all remote repository)
+  git remote show <remote>    (Show information about a certain remote repository, such as link and permission)
+# git remote show origin
+
+
+- git status    (Show status of current repository, such as untracted files and conflicts)
+- git tag       (Show all tags)
