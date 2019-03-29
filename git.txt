@@ -1,6 +1,20 @@
 * show which files in git repository:
 # git ls-tree --full-tree -r HEAD
 
+* Show branch trace history (which remote branch is followed)
+# git branch -lvv
+
+* Show file related commit even if it has been deleted
+  git log --stat -- <file_path>
+
+* Show which commits changed certain files
+  git whatchanged <file_path>
+  git log <file_path>
+  tig <file_path>
+
+* Show file difference between two commits
+  git whatchanged -p <commit1>..<commit2> <file_path>
+
 
 - git clone    (Download the whole repository)
 # git clone http://git.denx.de/u-boot.git
@@ -35,3 +49,65 @@
 
 - git status    (Show status of current repository, such as untracted files and conflicts)
 - git tag       (Show all tags)
+
+
+* Change the last commit
+  git commit --amend
+    you can change commit comment (and the commit hash will be changed every time you do it)
+    if you have staging change, it will be merged to previous commit
+
+- git log    (Show commits)
+  git log <start_commit>..<end_commit>   (Only show commits in range)
+
+* Set display format for 'git log'
+  git log --pretty=format:"<your_format>"
+# git log --pretty=format:"%h %an >> %s"
+    the above will show "commit_hash author >> oneline_commit"
+    ---
+    b8dccb9 Kevin Shi >> drivers: misc: xxx: fix wrong id
+    a0e4811 Aladdin Chang >> env: use 128MByte as default max gunzip size
+    ccc383b yachun >> dts: a3900: Add xxx board
+    ---
+    refer to https://git-scm.com/docs/pretty-formats for 'placeholer' desription
+
+
+* Commit steps
+  1. git commit -i (enter interactive mode)
+     1.a. choose action
+          > add untracked (add files to git repository)
+          > update        (add file change to staging)
+          > patch         (add part of file change to staging, see 'git add -p' for more info)
+     1.b. enter index number, to choose files
+          > use comma between numbers (example: 1, 3 ==> choose 1 and 3 only)
+          > use dash between numbers  (example: 1-3  ==> choose 1, 2, and 3)
+          > use star '*' will select all files
+     1.c. press enter will exit current stage
+     1.d. press 'q' to exit 'git add -i'
+  2. check staging changes before commit
+     # git diff --cached
+  3. git commit
+
+
+* Only add part of change in a file to staging for commit
+  git add -p <file>
+  > y   (add to staging)
+  > n   (not add to staging)
+  > s   (split current changes to smaller chunk and ask again)
+
+
+* Steps to push to remote repository (good habit)
+  1. Create a new branch and re-arrange the commits you want to push
+     git rebase -i HEAD~<number of patch to rebase>
+  2. Download latest change from remote
+     git fetch <remote_repository> <branch>
+     you can use one of below methods to check which remote branch you are following:
+     2.a. check .git/config
+     2.b. tig
+  3. Rebase to make sure your local branch is sync with remote
+     git rebase <remote_repository>/<branch>
+  4. If no conflict, you can push now
+     git push <remote> <local_branch>:<remote_branch>
+     4.a. if the local branch has the same name as remote branch, use below command
+          git push <remote> <remote_branch>
+     4.b. use comma before branch name when push will delete remote branch
+          git push <remote> :<remote_branch>
