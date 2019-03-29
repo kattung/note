@@ -1,5 +1,22 @@
 * Do PCIe re-enumeration without restart pc
-I.  Normal method
+I.  Use sysfs function
+    1. Reset PCIe end point
+       /sys/bus/pci/devices/<pcie_card>/reset
+       example:
+       # echo 1 > /sys/bus/pci/devices/0001\:01\:00.0/reset
+
+    2. Remove PCIe end point
+       /sys/bus/pci/devices/<pcie_card>/remove
+       example:
+       # echo 1 > /sys/bus/pci/devices/0001\:01\:00.0/remove
+       And the PCIe end point will not be shown in 'lspci'
+
+    3. PCIe rescan
+       # echo 1 > /sys/bus/pci/rescan
+       You should see a device added
+       And the PCIe end point will appear in 'lspci'
+
+II. Reset PCIe endpoint using GPIO (method 1. remove and rescan)
     1. Remove PCIe end point
        pcie bus remove: /sys/bus/pci/devices/<pcie_card>/remove
        example:
@@ -12,7 +29,7 @@ I.  Normal method
        # echo 1 > /sys/bus/pci/rescan
        And the PCIe end point will appear in 'lspci'
 
-II. Save and restore config file
+III.Reset PCIe endpoint using GPIO (method 2. restore config)
     1. Backup PCIe config file
        config file: /sys/bus/pci/devices/<pcie_card>/config
        example:
