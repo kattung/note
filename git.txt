@@ -31,6 +31,9 @@
 
 - git branch      (Show all local branches)
   git branch -a   (Show all local and remote branches)
+  git branch -d <branch>  (Delete local branch which has been merged)
+  git branch -D <branch>  (Delete local branch (force delete))
+  git branch -m [<old_name>] <new_name>  (Rename branch)
 
 
 - git checkout
@@ -111,3 +114,29 @@
           git push <remote> <remote_branch>
      4.b. use comma before branch name when push will delete remote branch
           git push <remote> :<remote_branch>
+
+
+- git rebase -i <commits_to_rearrange>
+  commits_to_rearrange: HEAD~<number>   (the last n commits)
+    1. remove the lines with the commits you want to delete
+    2. change commits sequence according to your need
+    3. replace 'pick' with below actions
+       'squash': merge this commit with previous one, and you can modify comment
+       'fixup' : same as squash but discard comment of this commit
+       'reword': modify commit comment
+       'edit'  : stop at this commit and you can modify files and commit
+
+                 Option A. Add more changes
+                 A.1. modify files
+                 A.2. add changes to stage
+                 A.3. create another commit.
+                      if no, the changes will be merge to the original commit
+                 A.4. git rebase --continue
+
+                 Option B. Split commit to several commits
+                 B.1. revert changes
+                      # git reset HEAD^
+                 B.2. add some of changes to stage
+                 B.3. commit changes
+                 B.4. repeat B.2-B.3
+                 B.5. git rebase --continue
