@@ -33,8 +33,9 @@
   git branch -a   (Show all local and remote branches)
   git branch -d <branch>  (Delete local branch which has been merged)
   git branch -D <branch>  (Delete local branch (force delete))
+  git branch -d -r <remote>/<branch>  (Delete remote tracking branch.
+                                       This will NOT delete the branch on the remote repository.)
   git branch -m [<old_name>] <new_name>  (Rename branch)
-
 
 - git checkout
   git checkout <branch>    (Switch to another branch)
@@ -49,15 +50,45 @@
   git remote show <remote>    (Show information about a certain remote repository, such as link and permission)
 # git remote show origin
 
+* Deletes all stale remote-tracking branches
+  git remote prune [--dry-run] <remote>
+    Deletes all stale remote-tracking branches under <name>.
+    These stale branches have already been removed from the remote
+    repository referenced by <name>, but are still locally available in "remotes/<name>".
+    With --dry-run option, report what branches will be pruned, but do not actually prune them.
+
 
 - git status    (Show status of current repository, such as untracted files and conflicts)
 - git tag       (Show all tags)
+- git blame <file> (Show who and which commit modify each line in file)
+- git cherry-pick <commit>  (Apply commit from other branch to current branch)
+- git revert <commit>   (Revert commit changes)
 
+- git diff      (Show un-stage changes)
+  git diff <branch/commit> (Show difference between given branch/commit and current status)
 
-* Change the last commit
+- git show <git_commit> (Show content of a commit)
+  git show <git_commit> --name-only (Only show files that modified in this commit)
+
+- git rm          (Remove a file from both git tree and directory)
+- git rm --cache  (Remove a file from both git tree, but keep in directory)
+
+* Fix the last commit
   git commit --amend
     you can change commit comment (and the commit hash will be changed every time you do it)
     if you have staging change, it will be merged to previous commit
+
+- git format-patch <commits>   (Create patches)
+  git format-patch HEAD^       (Create patch for the last commit)
+  git format-patch HEAD~<n>    (Create patch for the last n commits)
+  git format-patch <start_commit>..<end_commit>   (Create patch for commits in range)
+
+- git reset HEAD^         (Reset to status of previous commit)
+  git reset HEAD^ <file>  (Reset file to status of previous commit)
+
+- git am -3 <patch> (Apply patches)
+- git apply <patch> (Apply patch without commit)
+- patch -p1 <patch> (Apply patch without git)
 
 - git log    (Show commits)
   git log <start_commit>..<end_commit>   (Only show commits in range)
@@ -136,7 +167,11 @@
                  Option B. Split commit to several commits
                  B.1. revert changes
                       # git reset HEAD^
-                 B.2. add some of changes to stage
-                 B.3. commit changes
-                 B.4. repeat B.2-B.3
-                 B.5. git rebase --continue
+                 B.2. show un-stage changes
+                      # git diff
+                 B.3. add some of changes to stage
+                 B.4. show staging changes
+                      # git diff --cached
+                 B.5. commit changes
+                 B.6. repeat B.2-B.5
+                 B.7. git rebase --continue
