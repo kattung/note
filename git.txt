@@ -1,3 +1,6 @@
+* git fetch one tag without download all repository
+# git fetch <remote> tag <tag> --no-tags
+
 * show which files in git repository:
 # git ls-tree --full-tree -r HEAD
 
