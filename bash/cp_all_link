@@ -1,0 +1,23 @@
+#!/bin/bash
+
+src_dir=$1
+des_dir=$2
+
+if [ -z $1 ] || [ -z $2 ]; then
+	echo "Copy all symbolic link in src_dir to dest_dir"
+	echo "Usage: $0 src_dir dest_dir"
+	exit
+fi
+
+for file in $(ls $src_dir)
+do
+	target=$src_dir/$file
+	if [ -L $target ]; then
+		echo "copy link $target to $des_dir"
+		#abs_path=`readlink -e $target`
+		relv_path=`realpath $target --relative-to $des_dir`
+		ln -s $relv_path $des_dir/$file
+	fi
+done
+
+
