@@ -1,0 +1,96 @@
+===== Windows 10 =====
+
+
+Issue: cannot connect to samba
+---------------------
+
+**[Scenario]**
+Cannot access Linux samba
+
+**[Solution]**
+Enable below two setting, and then restart computer.
+
+1. Enable SMB v1.0
+
+   - Open 'Turn Windows feature on or off' by typing
+     'windows feature' in 'Search Windows'
+   - Find 'SMB 1.0/CIFS File Sharing Support'
+   - Enable 'SMB 1.0/CIFS Client' and 'SMB 1.0/CIFS Server'
+   - Reference: http://tomchun.tw/tomchun/2018/08/09/smb/
+
+2. Enable insecure guest logons by changing the registry key
+   Starting with Windows 10 1709, Windows prevents you from
+   accessing network shares with guest access enabled.
+   Guest access means connecting to network shares without
+   authentication, using the built-in "guest" account.
+
+  - Type 'regedit' in 'Search Windows'
+  - Find 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters'
+  - Double click on 'AllowInsecureGuestAuth' and set value to '1'
+  - Reference: https://tech.nicolonsky.ch/windows-10-1709-cannot-access-smb2-share-guest-access/
+
+
+
+Issue: cannot read Chinese character in notepad
+---------------------
+
+This issue is due to Windows 10 lack of Chinese fonts.
+https://support.microsoft.com/zh-tw/help/3083806/why-does-some-text-display-with-square-boxes-in-some-apps-on-windows-1
+
+Server in USA provides fonts for Windows 10,
+but they do not provide Chinese fonts.
+Follow below steps to download Chinese fonts from Microsoft server:
+
+  - Change setting in registry key.
+    Type 'regedit' in Search Windows
+    Find below parameter and set value
+
+    Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+       WUServer       --->
+       WUStatusServer --->
+    Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
+       UseWUServer   ---->  0
+  - Download fonts from Microsoft.
+    Go to below path:
+    Start \ Setting \ Apps \ Manage optional features \ Add a feature
+    The required fonts will be shown.
+    If the registry key is not changed as in step one, there will be no feature shown.</code>
+  - Change back registry.
+
+
+
+Turn off SHIFT feature of switching language
+---------------------
+
+**Boponmofo**
+<code>
+Setting \
+Time & Language   \
+Region & Language \
+Press "Chinese" \ Options \
+Press "Microsoft Boponmofo" \ Options \
+Advanced \
+Use left SHIFT to   -> set to (None)
+Use right SHIFT to  -> set to (None)
+</code>
+
+
+**ChangJie**
+<code>
+Setting \
+Time & Language   \
+Region & Language \
+Press "Chinese" \ Options \
+Press "Microsoft ChangJie" \ Options \
+Mode change key
+Select the key to toggle conversion mode -> (None)
+</code>
+
+Note: For ChangJie, you should also do the part for Boponmofo, then the hotkey can be changed.
+
+
+**Default hotkey:**
+^Hot key       ^ Function                                  ^
+|Ctrl  + Space | switch between Chinese/English            |
+|Shift + Space | switch between Full/Half                  |
+|Ctrl  + Shift | switch between input in the same Language |
