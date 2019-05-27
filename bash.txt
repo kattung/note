@@ -1,0 +1,17 @@
+tree: change display character
+----------
+# tree --charset unicode
+
+This will change from 
+    
+    .
+    ├── bin
+    │   ├── kernel
+    │   │   ├── armabinb
+
+change to 
+    .
+    |-- bin
+    |   |-- kernel
+    |   |   |-- bin
+
