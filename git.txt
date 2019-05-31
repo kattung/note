@@ -150,6 +150,9 @@
           git push <remote> :<remote_branch>
 
 
+* modify the first commit with 'git rebase':
+# git rebase -i --root
+
 - git rebase -i <commits_to_rearrange>
   commits_to_rearrange: HEAD~<number>   (the last n commits)
     1. remove the lines with the commits you want to delete
