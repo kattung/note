@@ -1,0 +1,106 @@
+HOWTO: build
+==============
+
+1. Preparing the packages in host
+   # sudo apt-get install debootstrap qemu-user-static
+
+2. Download the packages for ubuntu rootfs
+   # export debootstrap_dir=ubuntu-arm64-bonic
+   # sudo debootstrap --arch arm64 --foreign bionic "$debootstrap_dir" \
+     http://ports.ubuntu.com/ubuntu-ports \
+
+3. Install the packages/ second-stage
+   # sudo mkdir -p "${debootstrap_dir}/usr/bin"
+   # sudo cp "$(which qemu-aarch64-static)" "${debootstrap_dir}/usr/bin"
+   # sudo chroot "$debootstrap_dir" /debootstrap/debootstrap --second-stage
+
+4. Remove the passwd of root
+   # sudo chroot "$debootstrap_dir"
+
+   Edit /etc/passwd and /etc/shadow
+   remove the "*" in between ":" and ":" in root:....
+
+5. Enable UART console
+   # sudo chroot ${debootstrap_dir}
+   # ln -sf /lib/systemd/system/serial-getty\@.service /lib/systemd/system/getty.target.wants/
+
+
+Troble shooting
+===================
+[Issue 1] Illegal instruction
+Description
+-----------
+$ sudo chroot "$debootstrap_dir" /debootstrap/debootstrap --second-stage
+qemu: uncaught target signal 4 (Illegal instruction) - core dumped
+
+Solution: Build new version of qemu
+-----------
+Some bugs that have been fixed in the QEMU upstream but the fixes haven't been
+back ported to the Ubuntu deb package.
+Reference: http://logan.tw/posts/2018/02/18/build-qemu-user-static-from-source-code/
+
+# sudo apt-get build-dep qemu
+# git clone git://git.qemu.org/qemu.git
+# cd qemu
+# git submodule update --init --recursive
+# ./configure \
+    --prefix=$(pwd)/qemu-user-static \
+    --static \
+    --disable-system \
+    --enable-linux-user
+# make -j8
+# make install
+# cd qemu-user-static/bin
+# for i in *; do cp $i $i-static; done
+
+Copy the qemu-aarch64-static to ${debootstrap_dir}, and do second-stage again
+But, if the debootstrap is too old, it still cannot boot successfully.
+
+Description
+-----------
+[issue 2]: no entropy
+$ sudo chroot "$debootstrap_dir" /debootstrap/debootstrap --second-stage
+Fatal: no entropy gathering module detected
+
+Solution: Create random nodes
+-----------
+Reference: https://forum.openoffice.org/en/forum/viewtopic.php?f=5&t=995
+It's probably a message from ssh. The Linux kernel can provide random numbers
+which use environmental inputs to augment the randomness.
+This is often used by crypto software.
+You need to make sure that the Random pool (/dev/random and /dev/urandom)
+are working correctly
+
+#sudo mknod -m 666 ${debootstrap_dir}/dev/random c 1 3
+#sudo mknod -m 666 ${debootstrap_dir}/dev/urandom c 1 9
+
+
+
+Note
+===================
+* Remove root passwd
+  Edit /etc/passwd and /etc/shadow
+  remove the "*" in between ":" and ":" in root:....
+
+* Use apt to install packages
+  1. Update /etc/apt/source.list
+     At first, it will be an empty file. You need to add debian mirror there.
+     You can get debian mirror from https://debgen.simplylinux.ch/
+
+     Example:
+     --------
+     deb http://deb.debian.org/debian/ stable main contrib
+     deb-src http://deb.debian.org/debian/ stable main contrib
+
+  2. Set ISP in /etc/resolv.conf
+     If not set correctly, Internet Service Provider cannot forward
+     internet naming (DNS) to either its or external DNS servers.
+
+     Error message:
+     --------
+     Temporary failure resolving 'ports.ubuntu.com'
+
+     Example:
+     --------
+     nameserver xx.xx.xx.xx
+     search marvell.com
