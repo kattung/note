@@ -94,3 +94,13 @@ Note: For ChangJie, you should also do the part for Boponmofo, then the hotkey c
 |Ctrl  + Space | switch between Chinese/English            |
 |Shift + Space | switch between Full/Half                  |
 |Ctrl  + Shift | switch between input in the same Language |
+|Win   + Space | switch between all inputs                 |
+
+
+HOWTO: Archive
+---------------------
+* Archive mails
+  File / Tools / Clean Up Old Items...
+
+* Open archive
+  File / Open & Export / Open Outlook Data File
