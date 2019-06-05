@@ -1,0 +1,29 @@
+Version
+===========
+5.0 lenny
+6.0 squeeze
+7.0 wheezy
+8.0 jessie
+9.0 stretch
+devel sid
+
+
+HOWTO: build
+==============
+https://wiki.debian.org/Arm64Port
+
+[Stretch]
+Refer to ubuntu.txt, and replace the second step with below.
+# sudo debootstrap --arch arm64 --foreign stretch "$debootstrap_dir" \
+  http://ftp.debian.org/debian
+
+[Jessie]
+Refer to ubuntu.txt, and replace below steps.
+2. Download the packages for debian rootfs
+   # sudo debootstrap --arch armel --foreign jessie "$debootstrap_dir" \
+     http://ftp.debian.org/debian
+
+3. Install the packages/ second-stage
+   # sudo mkdir -p "${debootstrap_dir}/usr/bin"
+   # sudo cp "$(which qemu-arm-static)" "${debootstrap_dir}/usr/bin"
+   # sudo chroot "$debootstrap_dir" /debootstrap/debootstrap --second-stage

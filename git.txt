@@ -50,8 +50,14 @@
 
 - git remote
   git remote show             (Show all remote repository)
-  git remote show <remote>    (Show information about a certain remote repository, such as link and permission)
-# git remote show origin
+  git remote show <remote>    (Show information about a certain remote repository,
+                               such as link and permission)
+  example:
+  # git remote show origin
+  git remote add <remote> <url>     (Add remote respoitory)
+  git remote remove <remote>        (Remove remote respoitory)
+  git remote set-url <remote> <url> (Change remote url)
+  git remote update                 (Get update from remote repository)
 
 * Deletes all stale remote-tracking branches
   git remote prune [--dry-run] <remote>
@@ -62,13 +68,26 @@
 
 
 - git status    (Show status of current repository, such as untracted files and conflicts)
-- git tag       (Show all tags)
 - git blame <file> (Show who and which commit modify each line in file)
 - git cherry-pick <commit>  (Apply commit from other branch to current branch)
 - git revert <commit>   (Revert commit changes)
 
+- git tag       (Show all tags)
+  git tag -a tag_name [<commit>]
+  git show <tag_name>
+  git push <remote> <tag_name>
+
+- git stash       (stash un-stage changes)
+  git stash show  (show stashed changes)
+  git stash apply (get stashed changes back to working directory)
+
 - git diff      (Show un-stage changes)
   git diff <branch/commit> (Show difference between given branch/commit and current status)
+
+* create diff files
+  git diff HEAD^..HEAD filename > 1.diff
+* apply diff
+  patch -p1 < 1.diff   (-p1: remove the first part of file path)
 
 - git show <git_commit> (Show content of a commit)
   git show <git_commit> --name-only (Only show files that modified in this commit)
@@ -86,8 +105,31 @@
   git format-patch HEAD~<n>    (Create patch for the last n commits)
   git format-patch <start_commit>..<end_commit>   (Create patch for commits in range)
 
-- git reset HEAD^         (Reset to status of previous commit)
-  git reset HEAD^ <file>  (Reset file to status of previous commit)
+- git reset HEAD^                 (Reset to status of previous commit)
+  git reset commit                (Reset status of a given commit)
+  git reset ORIG_HEAD             (Reset to status of previous HEAD)
+  git reset <reset_point> <file>  (Reset file to status of a given reset point)
+
+- git reset [--soft | --mixed | --hard ]
+    commit: working -> stage -> commit
+    --soft:  back to stage step     (changes can be seen with 'git diff --cache')
+    --mixed: back to working stage  (changes can be seen with 'git diff')
+    --hard:  back to a givin commit (cannot see original stuff)
+    default is '--mixed'
+
+* If makes a wrong reset, how to get things back:
+  Method 1. # git reset ORIG_HEAD
+  Method 2. use 'git fsck' to check all commits that is not in 'git log'
+  Method 3. check 'reflog' to see all reset and checkout history
+
+- git reflog (check all history)
+    example of history:
+    ----
+    b7057a9 HEAD@{0}: reset: moving to b7057a9
+    98abc5a HEAD@{1}: commit: more stuff added to foo
+    b7057a9 HEAD@{2}: commit (initial): initial commit
+  use 'git reset' to the point you want, and everything is back.
+  example: git reset 98abc5a
 
 - git am -3 <patch> (Apply patches)
 - git apply <patch> (Apply patch without commit)
@@ -181,3 +223,60 @@
                  B.5. commit changes
                  B.6. repeat B.2-B.5
                  B.7. git rebase --continue
+
+
+* Rebase current branch with a new base instead of old base
+  Use case: applying a group of patches from one branch to another
+- git rebase --onto <new_base> <current_base> --strategy recursive
+  example:
+  new_base:     commit or another_branch
+  current_base: commit (the base that will be replaced)
+
+  current_branch: commit_5638e8b + patches
+  we want new_branch to become: new_base + patches
+
+  # git checkout current_branch
+  # git checkout -b new_branch
+  # git rebase --onto new_base 5638e8b
+  (the new_branch will have new_base + paches after commit 5638e8b)
+
+* Create bare repository on remote site
+  1. clone a bare repository
+     # git clone --bare --shared <url> <bare_repository>
+  2. change branch pointed by HEAD
+     # git symbolic-ref HEAD refs/heads/{master, or whatever you have in remote repo}
+
+* Create bare respository on local site
+  # mkdir <dir>
+  # cd <dir>
+  # git init --bare --shared
+
+* git archive
+    Archive the git repository into a tarball
+    the command is complicated, so here create simple function  in .bashrc
+
+    ----- append the following lines to ~/.bashrc ----
+    _git_archive()
+    {
+        local prefix=$1;
+        local commit="HEAD"
+        if [ $# -eq 0 ]; then
+            echo "usage: git-ar prefix <commit>"
+            return
+        fi
+        if [ $# -eq 2 ]; then
+            commit=$2
+        fi
+        echo "git archive --format=tar --prefix=$prefix/ $commit | bzip2 > $prefix.tar.bz2"
+        git archive --format=tar --prefix=$prefix/ $commit | bzip2 > $prefix.tar.bz2
+    }
+
+    alias git-ar='_git_archive'
+    ------------------
+
+    1. # git-ar linux-gcaab12f caab12f
+       Archive commit caab12f into a tarball named 'linux-gcaab12f.tar.bz2'
+       with directory prefix=linux-gcaab12f/
+    2. # git-ar uboot.2012-11-12
+       Archive current HEAD into a tarball named 'uboot.2012-11-12.tar.bz2'
+       with directory prefix=uboot.2012-11-12/
