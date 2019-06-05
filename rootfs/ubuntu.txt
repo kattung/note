@@ -1,3 +1,18 @@
+Version
+===========
+Hardy     8.04
+Jaunty    9.04
+Karmic    9.10
+Lucid    10.04
+Maverick 10.10
+Natty    11.04
+Oneiric  11.10
+Precise  12.04
+Quantal  12.10
+...
+Bionic   18.04
+
+
 HOWTO: build
 ==============
 
@@ -104,3 +119,20 @@ Note
      --------
      nameserver xx.xx.xx.xx
      search marvell.com
+
+
+Why second stage
+======================
+Separating the two stages is only needed if you are bootstrapping
+a distribution for a foreign architecture (CrossDebootstrap).
+See the description of the --foreign option on the man page.
+For example, using a x86 machine to create a Debian/Ubuntu installation
+for an embedded ARM or PowerPC system.
+
+The first stage downloads the needed .deb files and unpacks them into the
+directory you specify. The second stage runs all of the package configuration
+scripts, which must be done using the target architecture (or by using
+qemu-user-static to emulate the target architecture).
+
+If you're not building an install for a foreign architecture, the stages are
+combined and you can ignore the --second-stage option.
