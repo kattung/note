@@ -1,0 +1,68 @@
+* menuconfig corrupted
+  https://stackoverflow.com/questions/8483798/tmux-borders-displayed-as-x-q-instead-of-lines/8485457#8485457
+  https://bugzilla.redhat.com/show_bug.cgi?id=166291
+
+  There is some mismatch between the terminal emulator and the terminfo database
+  entry being used by tmux (the one named by the TERM environment variable when
+  you start/attach to a tmux server).
+
+  Per the VT100 User Guide, Table 3-9: Special Graphics Characters, when the
+  "special graphics set" is selected, x is used to draw the "Vertical bar"
+  and q is used to draw "Horizontal line - Scan 5".
+
+  Probably the effective terminfo database entry indicates that ACS is available,
+  but your terminal emulator is not actually responding to the specified control sequences.
+
+  Possible solution
+  * Use putty version newer than 0.64
+
+  * Configure putty to read UTF8
+    Config / Window / Translation / Remote character set => UTF-8
+
+  * Check below setting
+    # export $TERM
+    # export $TERMINFO
+
+  * Set UTF-8 in $LANG
+    # locale
+    LANG=en_GB.UTF-8
+
+    LANG should use UTF-8, type below if not
+    # sudo locale-gen en_US.UTF-8
+    # sudo update-locale LANG=en_US.UTF-8
+
+  * # export NCURSES_NO_UTF8_ACS=1
+
+
+* terminal trick
+  https://www.cyut.edu.tw/~ckhung/b/mi/textmode.php
+
+* [Issue] prompt continuously pop out when using byobu
+  Solution:
+  Select a different backend:
+  # byobu-select-backend
+
+* detach byobu
+  escape_key + d
+
+* rename screen session
+  escape_key + A
+
+* roll screen up
+  > enter copy mode
+    escape_key + [
+  > exit copy mode
+    press any key
+
+* copy and paste in screen
+  [copy]
+  1. press 'escape_key + [' to enter copy mode
+  2. use 'space' or 'enter' to highlight
+  3. press 'space' or 'enter' again to finish copy
+  [paste]
+  escape_key + ]
+
+# tmux ls  (display windows)
+# tmux kill-window -t 0  (kill window 0)
+# ctrl + s (free screen)
+# ctrl + q (un-free screen)
