@@ -93,10 +93,6 @@ are working correctly
 
 Note
 ===================
-* Remove root passwd
-  Edit /etc/passwd and /etc/shadow
-  remove the "*" in between ":" and ":" in root:....
-
 * Use apt to install packages
   1. Update /etc/apt/source.list
      At first, it will be an empty file. You need to add debian mirror there.

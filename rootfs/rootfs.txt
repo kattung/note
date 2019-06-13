@@ -1,0 +1,42 @@
+* Access remote server without enter password
+  1. Gen public key in local machine
+     # pub-keygen
+     Press enter several times
+     The public key will be ~/.ssh/id_rsa.pub
+     Copy the content and paste to remote server
+  2. In remote server
+     Add the above copied line to ~/.ssh/authorized_keys
+
+* Remove root passwd
+  Edit /etc/passwd and /etc/shadow
+  remove the "*" in between ":" and ":" in root:....
+
+* Set ISP for DNS server
+  If not set correctly, Internet Service Provider cannot forward
+  internet naming (DNS) to either its or external DNS servers.
+
+  Edit /etc/resolv.conf
+  ---- example -----
+  nameserver xx.xx.xx.xx
+  search marvell.com
+  ------------------
+
+* Change hostname
+  1. temporary
+     hostname <new_name>
+  2. work after reboot
+     Edit /etc/hostname
+
+* Show user and hostname in prompt
+  Edit ~/.profile
+  ----- example -----
+  PS1="[\u@\h \w]\$"
+  -------------------
+
+* Set local name server
+  Edit /etc/hosts
+  ----- example -----
+  192.168.1.100  xx-server
+  192.168.1.101  yy-server
+  -------------------
+  The name will be translated to the ip address
