@@ -11,4 +11,12 @@
   fi
   ----
  
+* iptables
 
+* traceroute
+# traceroute <ip>
+
+* ip
+  show / manipulate routing, devices, policy routing and tunnels
+  # ip a
+  show ip address
