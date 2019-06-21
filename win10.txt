@@ -1,5 +1,23 @@
 ===== Windows 10 =====
 
+HOWTO: Change application scaling
+---------------------
+1. Right click on application icon on taskbar
+2. Right click on application name
+3. Properties / Compatibility
+4. Check the box 'Override high DPI scalling behavior.'
+   Scalling performed by: 'Application'
+
+
+HOWTO: Archive
+---------------------
+* Archive mails
+  File / Tools / Clean Up Old Items...
+
+* Open archive
+  File / Open & Export / Open Outlook Data File
+
+
 
 Issue: cannot connect to samba
 ---------------------
@@ -95,12 +113,3 @@ Note: For ChangJie, you should also do the part for Boponmofo, then the hotkey c
 |Shift + Space | switch between Full/Half                  |
 |Ctrl  + Shift | switch between input in the same Language |
 |Win   + Space | switch between all inputs                 |
-
-
-HOWTO: Archive
----------------------
-* Archive mails
-  File / Tools / Clean Up Old Items...
-
-* Open archive
-  File / Open & Export / Open Outlook Data File
