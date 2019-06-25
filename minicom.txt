@@ -1,0 +1,2 @@
+lock file:
+/var/lock/LCK..ttyUSB<xxx>
