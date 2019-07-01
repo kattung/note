@@ -1,0 +1,11 @@
+Makefile cheat sheet:
+
+$@:   target
+$^:   all dependency
+$<:   the first dependency
+$*:   all dependency, but not include file extension
+$?:   the dependency that need rebuild/modify
+$+:   all dependency, including duplicate stuff.
+      usually used in linking step.
+
+set -e: exit if error
