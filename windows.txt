@@ -1,0 +1,3 @@
+* Remote desktop:
+  - From Window to Windows:
+    mstsc (Remote Desktop Connection)
