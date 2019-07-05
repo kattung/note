@@ -1,0 +1,58 @@
+## SPI NOR flash
+sf probe
+
+## NAND
+nand info
+
+## PCIE
+pci 1
+pci 3
+
+## Ethernet
+setenv ipaddr 192.168.1.3
+setenv serverip 192.168.1.100
+setenv gatewayip 192.168.1.100
+setenv netmask 255.255.254.0
+ping 192.168.1.100
+
+## I2C
+i2c bus
+i2c dev 0
+i2c probe
+
+## Boot kernel with rootfs in USB
+usb stop; usb start
+fatload usb 0:1 0x2000000 Image
+fatload usb 0:1 0x6000000 board.dtb
+setenv bootargs console=ttyS0,115200n8 root=/dev/sda2 rw rootwait; booti 0x2000000 - 0x6000000
+
+## Boot kernel with nfs
+setenv ipaddr 192.168.1.3
+setenv serverip 192.168.1.100
+setenv gatewayip 192.168.1.100
+setenv netmask 255.255.254.0
+setenv bootargs console=ttyS0,115200n8 root=/dev/nfs rw rootwait nfsroot=${serverip}:/path/to/nfs/debian-arm64,proto=tcp ip=${ipaddr}:${serverip}:${gatewayip}:${netmask}:board:eth0:off user_debug=31 earlyprintk
+tftp 0x2000000 Image
+tftp 0x6000000 board.dtb
+booti 0x2000000 - 0x6000000
+
+## Boot kernel with rootfs in nand
+ubi part nand0,2;ubifsmount ubi0:rootfs
+ubifsload 0x6000000 $fdtfile
+ubifsload 0x2000000 $image
+ubifsumount
+setenv nand_rootfs_num
+setenv bootargs console=ttyS0,115200n8 ubi.mtd=$nand_rootfs_num root=ubi0:rootfs rw rootfstype=ubifs rootflags=sync
+booti 0x2000000 - 0x6000000
+
+## After kernel booting successfully
+uname -a
+echo `cat /proc/device-tree/model`
+df -h
+cat /proc/mtd
+ping 192.168.1.100 -c 10
+lsblk
+lspci -vv
+stty -F /dev/ttyS1 -a
+stty -F /dev/ttyS1 crtscts
+sync; sync; reboot
