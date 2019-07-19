@@ -1,0 +1,44 @@
+tweek:
+==================
+* Modify stack frames size
+
+  Error message:
+  -----------
+  warning: the frame size of xxxx bytes is larger than 1024 bytes
+  -----------
+
+  Reason:
+  Local variable in function take too large size (larger than frame size)
+
+  Solution:
+  1. Reduce local variable size in function
+  2. Enlarge frame size in kernel config
+     ------
+     Kernel hacking  --->
+         Compile-time checks and compiler options  --->
+           (1024) Warn for stack frames larger than (needs gcc 4.4)
+     ------
+     You can change it to 2048 or 4096
+
+
+HOWTO: build
+==================
+0. Enter Kernel directory
+# cd /path/to/kernel
+
+1. Set the cross compiler:
+# export CROSS_COMPILE=/path/to/toolchain/aarch64-linux-gnu-
+# export ARCH=arm64
+
+2. Build kernel and dtb
+# make mrproper
+# make <board>_defconfig
+# make Image dtbs
+
+kernel image: arch/arm64/boot/Image
+dtb: arch/arm64/boot/dts/
+
+For 32bit ARM cpu, change as below
+# export CROSS_COMPILE=arm-linux-gnueabi-
+# export ARCH=arm
+# make zImage dtbs
