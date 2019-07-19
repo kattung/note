@@ -1,0 +1,32 @@
+HOWTO: build U-Boot
+====================
+0. Enter U-Boot directory
+# cd /path/to/u-boot
+
+1. Set the cross compiler:
+# export CROSS_COMPILE=/path/to/toolchain/aarch64-linux-gnu-
+
+2. Build U-Boot binary
+# make <board>_defconfig
+# make DEVICE_TREE="<board>"
+
+The U-Boot compilation generates "u-boot.bin" - the U-Boot image
+
+
+HOWTO: build ATF
+====================
+0. Enter ATF directory
+# cd /path/to/atf
+
+1. Set the cross compiler:
+# export CROSS_COMPILE=/path/to/toolchain/aarch64-linux-gnu-
+
+2. Set path for FIP images:
+   Set U-Boot image path (relatively to ATF root or absolute path)
+# export BL33=/path/to/u-boot.bin
+
+3. Build ATF
+# make LOG_LEVEL=20 PLAT=a3900 all fip
+
+The output binary 'build/<PLAT>/release/flash-image.bin'
+will be the one to be placed on the boot flash/device
