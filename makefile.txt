@@ -8,4 +8,13 @@ $?:   the dependency that need rebuild/modify
 $+:   all dependency, including duplicate stuff.
       usually used in linking step.
 
+$(@D):  the directory part of the file name of the target
+$(@F):  the file name part of the target without diretory part
+
+:=    values within it are expanded at declaration time
+ =    values within it are recursively expanded when the variable is used,
+	  not when it's declared.
+?=    only assign new value if not already given one
+
+
 set -e: exit if error
