@@ -1,0 +1,95 @@
+cmd> ceedling [no arguments]
+
+Run the default Rake task (conveniently recognized by the name default by Rake). Neither Rake nor Ceedling provide a default task. Rake will abort if run without arguments when no default task is defined. You can conveniently define a default task in the Rakefile discussed in the preceding setup & installation section of this document.
+
+cmd> ceedling -T
+
+List all available Rake tasks with descriptions (Rake tasks without descriptions are not listed). -T is a command line switch for Rake and not the same as tasks that follow.
+
+cmd> ceedling <tasks...> --trace
+
+For advanced users troubleshooting a confusing build error, debug Ceedling or a plugin, --trace provides a stack trace of dependencies walked during task execution and any Ruby failures along the way. Note that --trace is a command line switch for Rake and is not the same as tasks that follow.
+
+cmd> ceedling environment
+
+List all configured environment variable names and string values. This task is helpful in verifying the evaluatio of any Ruby expressions in the [:environment] section of your config file.`: Note: Ceedling may set some convenience environment variables by default.
+
+cmd> ceedling paths:*
+
+List all paths collected from [:paths] entries in your YAML config file where * is the name of any section contained in [:paths]. This task is helpful in verifying the expansion of path wildcards / globs specified in the [:paths] section of your config file.
+
+cmd> ceedling files:assembly
+
+cmd> ceedling files:header
+
+cmd> ceedling files:source
+
+cmd> ceedling files:test
+
+List all files and file counts collected from the relevant search paths specified by the [:paths] entries of your YAML config file. The files:assembly task will only be available if assembly support is enabled in the [:release_build] section of your configuration file.
+
+cmd> ceedling options:*
+
+Load and merge configuration settings into the main project configuration. Each task is named after a *.yml file found in the configured options directory. See documentation for the configuration setting [:project][:options_path] and for options files in advanced topics.
+
+cmd> ceedling test:all
+
+Run all unit tests (rebuilding anything that's changed along the way).
+
+cmd> ceedling test:delta
+
+Run only those unit tests for which the source or test files have changed (i.e. incremental build). Note: with the [:project][:use_test_preprocessor] configuration file option set, runner files are always regenerated limiting the total efficiency this text execution option can afford.
+
+cmd> ceedling test:*
+
+Execute the named test file or the named source file that has an accompanying test. No path. Examples: ceedling test:foo.c or ceedling test:test_foo.c
+
+cmd> ceedling test:pattern[*]
+
+Execute any tests whose name and/or path match the regular expression pattern (case sensitive). Example: ceedling "test:pattern[(I|i)nit]" will execute all tests named for initialization testing. Note: quotes may be necessary around the ceedling parameter to distinguish regex characters from command line operators.
+
+cmd> ceedling test:path[*]
+
+Execute any tests whose path contains the given string (case sensitive). Example: ceedling test:path[foo/bar] will execute all tests whose path contains foo/bar. Note: both directory separator characters / and \ are valid.
+
+cmd> ceedling release
+
+Build all source into a release artifact (if the release build option is configured).
+
+cmd> ceedling release:compile:*
+
+Sometimes you just need to compile a single file dagnabit. Example: ceedling release:compile:foo.c
+
+cmd> ceedling release:assemble:*
+
+Sometimes you just need to assemble a single file doggonit. Example: ceedling release:assemble:foo.s
+
+cmd> ceedling module:create[Filename]
+
+cmd> ceedling module:create[<Path:>Filename]
+
+It's often helpful to create a file automatically. What's better than that? Creating a source file, a header file, and a corresponding test file all in one step!
+
+There are also patterns which can be specified to automatically generate a bunch of files. Try ceedling module:create[Poodles,mch] for example!
+
+The module generator has several options you can configure. F.e. Generating the source/header/test file in a subdirectory (by adding when calling module:create). For more info, refer to the Module Generator section.
+
+cmd> ceedling logging <tasks...>
+
+Enable logging to /logs. Must come before test and release tasks to log their steps and output. Log names are a concatenation of project, user, and option files loaded. User and option files are documented in the advanced topics section of this document.
+
+cmd> ceedling verbosity[x] <tasks...>
+
+Change the default verbosity level. [x] ranges from 0 (quiet) to 4 (obnoxious). Level [3] is the default. The verbosity task must precede all tasks in the command line list for which output is desired to be seen. Verbosity settings are generally most meaningful in conjunction with test and release tasks.
+
+cmd> ceedling summary
+
+If plugins are enabled, this task will execute the summary method of any plugins supporting it. This task is intended to provide a quick roundup of build artifact metrics without re-running any part of the build.
+
+cmd> ceedling clean
+
+Deletes all toolchain binary artifacts (object files, executables), test results, and any temporary files. Clean produces no output at the command line unless verbosity has been set to an appreciable level.
+
+cmd> ceedling clobber
+
+Extends clean task's behavior to also remove generated files: test runners, mocks, preprocessor output. Clobber produces no output at the command line unless verbosity has been set to an appreciable level.
