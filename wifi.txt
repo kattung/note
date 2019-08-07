@@ -1,0 +1,13 @@
+* Check available WiFi:
+  # nmcli device wifi list
+
+* Check avaiable WiFi connection profile:
+  # nmcli connection show
+
+* Create/close WiFi connection:
+  # sudo nmcli connection up <connection_profile>
+  # sudo nmcli connection down <connection_profile>
+
+* nmcli abbreviation
+  device -> d
+  connection -> con
