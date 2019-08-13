@@ -1,7 +1,15 @@
-* git fetch one tag without download all repository
-# git fetch <remote> tag <tag> --no-tags
+* git checkout all branches
+  ---- script ----
+  #!/bin/bash
+  for branch in `git branch -a | grep remotes | grep -v HEAD | grep -v master`; do
+     git branch --track ${branch#remotes/origin/} $branch
+  done
+  ----------------
 
-* show which files in git repository:
+* git push all branches
+  git push --all <remote>
+
+* Show which files in git repository:
 # git ls-tree --full-tree -r HEAD
 
 * Show branch trace history (which remote branch is followed)
@@ -75,7 +83,12 @@
 - git tag       (Show all tags)
   git tag -a tag_name [<commit>]
   git show <tag_name>
-  git push <remote> <tag_name>
+  git push <remote> <tag_name>  (push one tag)
+  git push <remote> --tags      (push all tags)
+
+* git fetch one tag without download all repository
+# git fetch <remote> tag <tag> --no-tags
+
 
 - git stash       (stash un-stage changes)
   git stash show  (show stashed changes)
