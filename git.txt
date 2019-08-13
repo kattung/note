@@ -80,11 +80,12 @@
 - git cherry-pick <commit>  (Apply commit from other branch to current branch)
 - git revert <commit>   (Revert commit changes)
 
-- git tag       (Show all tags)
-  git tag -a tag_name [<commit>]
-  git show <tag_name>
-  git push <remote> <tag_name>  (push one tag)
-  git push <remote> --tags      (push all tags)
+- git tag                        (Show all tags)
+  git tag -a tag_name [<commit>] (Create tag)
+  git tag -d tag_name            (Delete tag)
+  git show <tag_name>            (Show tag content)
+  git push <remote> <tag_name>   (Push one tag to remote repository)
+  git push <remote> --tags       (Push all tags to remote repository)
 
 * git fetch one tag without download all repository
 # git fetch <remote> tag <tag> --no-tags
