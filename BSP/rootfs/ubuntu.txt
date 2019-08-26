@@ -134,7 +134,7 @@ If you're not building an install for a foreign architecture, the stages are
 combined and you can ignore the --second-stage option.
 
 
-Install 32-bit library
+Install 32-bit library on 18.04 (Bionic)
 ======================
 # sudo dpkg --add-architecture i386
 # sudo apt update
