@@ -1,3 +1,9 @@
+* Find which commit remove a given pattern
+# git log -G<pattern> -p <file>
+
+* Find which tag contains a given commit
+# git tag --contains <commit>
+
 * git checkout all branches
   ---- script ----
   #!/bin/bash
