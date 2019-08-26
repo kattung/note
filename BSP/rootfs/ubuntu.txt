@@ -132,3 +132,12 @@ qemu-user-static to emulate the target architecture).
 
 If you're not building an install for a foreign architecture, the stages are
 combined and you can ignore the --second-stage option.
+
+
+Install 32-bit library
+======================
+# sudo dpkg --add-architecture i386
+# sudo apt update
+# sudo apt install libc6:i386
+
+https://linuxconfig.org/unable-to-find-a-suitable-destination-to-install-32-bit-compatibility-libraries-on-ubuntu-18-04-bionic-beaver-linux
