@@ -1,0 +1,34 @@
+* dpkg -l <package-name-pattern>
+  List all software package that match pattern.
+  If you don't know the full name, you can use "*package-name-pattern*"
+
+* dpkg -S <file>
+  Show which software package the <file> belongs to
+
+* dpkg -L <package>
+  List all files in <package>
+
+* aptitude
+  Show installed or usable software packages
+
+* apt-get update
+  Execute this command after editing /etc/apt/sources.list
+  or after execute /etc/apt/preferences.
+  Also, you should execute this command periodically to make sure
+  software package list is up-to-date.
+
+* apt-get upgrade
+  Upgrade installed software packages
+
+* apt-cache search <string>
+  Search <string> in software package list
+
+* apt-get install <packagename>
+  Install a new software package
+
+* apt-get remove <packagename>
+  Uninstall a software (keeping the configure files)
+
+* apt-get --purge remove <packagename>
+  Uninstall a software (delete the configure files)
+  This action is dangerous. It will purge un-related files.
