@@ -1,3 +1,14 @@
+* Install git on Windows
+1. Download git from https://git-scm.com/downloads
+2. All set as default when install
+3. Modify ~/.gitconfig as below
+   ---
+   [core]
+   autocrlf = false
+   ---
+   Reference: https://blog.miniasp.com/post/2013/09/15/Git-for-Windows-Line-Ending-Conversion-Notes
+
+
 * Find which commit remove a given pattern
 # git log -G<pattern> -p <file>
 
