@@ -1,15 +1,19 @@
-Change font
-
+Tips:
 http://freekyidea.pixnet.net/blog/post/234224861
 https://blog.xuite.net/yang44/dd/49129041-SourceInsight+%E7%9A%84%E5%AF%A6%E7%94%A8%E6%8A%80%E5%B7%A7
-
-Change background
 https://blog.csdn.net/dosthing/article/details/80013059
 
-1. Change almost fonts
+My tunning:
+1. Change almost all fonts
    Options / Document Options / Screen Options
 
-2. Mark the ones still not good, right click
-   Style Properties
+2. There are still some fonts not good, tune for each
+   Mark the ones you want to modify
+   Right click on them and choose "Style Properties"
    choose type name and change fonts
+   Example:
    "Auto Annotation" is the one that Source Insight gives recommentation
+
+3. Show line number
+   Options / Document Options
+   Choose "Show line numbers"
