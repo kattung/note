@@ -17,3 +17,7 @@ My tunning:
 3. Show line number
    Options / Document Options
    Choose "Show line numbers"
+
+
+### Add and remove files
+Project / Add and Remove Project Files...
