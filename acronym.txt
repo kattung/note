@@ -1,0 +1,21 @@
+===== Wifi =====
+
+HE:     High Efficiency         802.11ax
+VHT:    Very High Throughput    802.11ac
+HT:     High Throughput         802.11n
+legacy:                         802.11b, 802.11a/g
+
+
+RSSI:   Receive Signal Strength Indication
+CSI:    Channel State Information
+AC:     Access Catagory
+AoA:    Angle of Arrival
+NDPA:   Null Packet Announcement
+NDP:    Null Packet
+CCK:    Complementary Code Keying
+MCS:    Modulation and Coding Index
+DCM:    Dual Carrier Modulation
+
+
+t-put:  throughput
+thpt:   throughput
