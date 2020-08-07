@@ -42,3 +42,8 @@ For 32bit ARM cpu, change as below
 # export CROSS_COMPILE=arm-linux-gnueabi-
 # export ARCH=arm
 # make zImage dtbs
+
+
+linux code explanation
+==================
+https://eeepage.info/sk_buff-packet
