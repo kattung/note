@@ -1,3 +1,15 @@
+* MINGW64: cannot use vim when 'git commit'
+    Error message: "cannot spawn /usr/bin/vim: No such file or directory"
+    Solution 1: set core.editor to 'vim' only
+        edit ~/.gitconfig
+        ---
+        [core]
+        -   editor = /usr/bin/vim
+        +   editor = vim
+        ---
+    Solution 2:
+    # git config --global core.editor vim
+
 * Create a non-bare git repository for push
 # git init
 # git add .
