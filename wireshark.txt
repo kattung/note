@@ -1,0 +1,17 @@
+Mark: Ctrl + M
+Jump to marked place: Ctrl + Shift + N/B
+
+* Do not use source/destination addr
+* Use Transmitter/Receiver addr
+
+* How to check data frame: IEEE 802.11 QoS Data
+
+* Make it simple
+  Analyze / Enable Protocol
+  uncheck "LLC"
+
+* Set color
+  View / Coloring Rules...
+  +
+  Enter 'Name' and 'Filter'
+  Choose Background color
