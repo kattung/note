@@ -19,3 +19,11 @@ DCM:    Dual Carrier Modulation
 
 t-put:  throughput
 thpt:   throughput
+
+symbol: the smallest transmitted unit in PHY layer
+
+PSK:    Phase-Shift Keying
+BPSK:   Binary Phase-Shift Keying
+QPSK:   Quadrature Phase-Shift Keying
+QAM:    Quadrature amplitude modulation
+EVM:    Error Vector Magnitude
