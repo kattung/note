@@ -1,0 +1,10 @@
+AID:    Association ID (index indicate the STAs associated)
+TIM:    Traffic Indication Map
+DTIM:   Delivery TIM (for broadcast and multicast)
+
+EOSP:   End of Service Period
+TBTT:   Target Beacon Transmittion Time, usually 100TU (Time Unit)
+TXOP:   Transmission Oportunity
+        When STA wake up, ask to send more than one packet within the period
+        VO and VI can do this. they can reserve a exclusive transmission period
+TWT:    Target Wakeup Time
