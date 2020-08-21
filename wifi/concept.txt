@@ -18,6 +18,14 @@ BSS:    Basic Service Set ==> AP + STA
 DS:     Distribution System  ==> the other end of AP
 ESS:    Extended Service Set (more than one AP)
         STAs can roaming within the ESS
+WDS:    Wireless Distribution System
+SA:     Source Address
+RA:     Receiver Address
+TA:     Transmitter Address
+DA:     Destination Address
+SSID:   Service Set Identifier
+BSSID:  Basic SSID (AP link layer AMC address)
+ESSID:  Extended SSID (Domain name, a 32 Byte string)
 
 DCF:    Distributed Coordination Function
         STA compete with each other to use channel
@@ -31,14 +39,13 @@ EIFS:   Extended Interface Space (the longest)
         When data corrupt, the time to wait before next transmition)
         SIFS + Ack + DIFS
 
-MAC:    Media Access Control
-SA:     Source Address
-RA:     Receiver Address
-TA:     Transmitter Address
-DA:     Destination Address
-SSID:   Service Set Identifier
-BSSID:  Basic SSID (AP link layer AMC address)
-ESSID:  Extended SSID (Domain name, a 32 Byte string)
+NSS:    Networking Subsystem
+SNAP:   Subnetwork Access Protocol
+MLME:   MAC Sublayer Management Entity
+CMIF:   Common Header Interface (include 802.11 Header)
+HAL:    Hardware Arbitration Layer
+DRA:    Dynamic Rate Adaptation
+RRM:    Radio Resource Management
 
 HEW:    High Efficiency Wireless
 OFDM:   Orthogonal Frequency Division Multiplexing
@@ -46,28 +53,30 @@ OFDMA:  Orthogonal Frequency Division Multiple Access
 CCA:    Carrier Channel Accessment
 NAV:    Network Allocation Vector (includes duration)
 CW:     Contention Window
+        CWmin/CWmax: used by random backoff
 WDS:    Wireless Distribution System
 
 RTS:    Request To Send
 CTS:    Clear To Send (now you can send packet)
 CSMA/CA:    Carrier Sense Multiple Access/Collision Avoidance (for Wireless)
 CSMA/CD:    Carrier Sense Multiple Access/Collision Detection (for Wire)
+SD:     Signal Detection
 
 RSSI:   Receive Signal Strength Indication
 CSI:    Channel State Information
-AC:     Access Catagory
-AoA:    Angle of Arrival
-NDPA:   Null Packet Announcement
-NDP:    Null Packet
 CCK:    Complementary Code Keying
 MCS:    Modulation and Coding Index
 DCM:    Dual Carrier Modulation
-
+OMI:    Operation Mode Indication
 
 t-put:  throughput
 thpt:   throughput
 
+Frame Format: seq_ctrl: seq number + packet retry count
 symbol: the smallest transmitted unit in PHY layer
+BA:     Block Ack
+BAR:    Block Ack Request
+BSRP:   Buffer Status Report Poll
 
 PSK:    Phase-Shift Keying
 BPSK:   Binary Phase-Shift Keying
@@ -75,7 +84,69 @@ QPSK:   Quadrature Phase-Shift Keying
 QAM:    Quadrature amplitude modulation
 EVM:    Error Vector Magnitude
 
-EOSP:   End of Service Period
-TBTT:   Target Beacon Transmittion Time, usually 100TU (Time Unit)
+IE:     Information Element
+SS:     Spatial Stream
+GI:     Guard Interval
+        the interval between sending continuous packet
+        LGI/SGI (long/short GI)
 
-Frame Format: seq_ctrl: seq number + packet retry count
+MAC:    Media Access Control
+LLC:    Logical Link Layer
+DLL:    Data Link Layer ( = LLC + MAC layer)
+PLCP:   Physical Layer Convergence Protocol Sublayer
+PMD:    Pyhsical Medium Dependent Sublayer
+
+SDU:    Service Data Unit
+MSDU:   MAC Service Data Unit
+PDU:    Protocol Data Unit
+MPDU:   MAC Protocol Data Unit
+PSDU:   PLCP Service Data Unit
+PPDU:   PLCP Protocol Data Unit
+A-MSDU: Aggregate MAC Service Data Unit
+A-MPDU: Aggregate MPDU
+
+---------------------
+Broadcast:  FF:FF:FF:FF
+Multicast:  xx:xx:xx:xx
+            --
+            b'0=1 (bit 0 of highest byte should be 1'b1)
+            other bits will be the key recoganized by the targeted STAs
+
+There's no need of ack for Broadcast and Multicast
+From the view of MAC, broadcast is subset of multicast
+
+
+---------------------
+WMM:    Wifi Multi Media
+        Define how to implement QoS of DCF in 802.11e
+EDCA:   Enhance Distributed Channel Access
+QoS:    Quality of Service
+TCs:    Traffic Categories
+AC:     Access Category (VO / VE / BE / BK)
+AIFS:   Brbitration IFS (the higher priority, the shorter IFS)
+
+QoS Priority: Voice > Vedio > Best Effort > Background
+TID:    BE  Best Effort  (0/3)
+        BK  Background   (1/2)
+        VI  Vedio        (4/5)
+        VO  Voice        (6/7)
+
+
+---------------------
+BSS color:
+The BSS coloring information will be in IE and PHY header.
+In overlapped BSS, STA need this information to know
+if the packet is from its associated AP.
+
+
+---------------------
+DFS:    Dynamic Frequency Selection
+CAC:    Channel Availability Check
+CSA:    Channel Switch Announcement
+NOP:    Non-Occupancy Period
+NOL:    Non-Occupancy List
+ZW:     Zero Wait
+
+AoA:    Angle of Arrival
+NDPA:   Null Packet Announcement
+NDP:    Null Packet
