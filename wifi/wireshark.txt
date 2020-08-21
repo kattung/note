@@ -15,3 +15,6 @@ Jump to marked place: Ctrl + Shift + N/B
   +
   Enter 'Name' and 'Filter'
   Choose Background color
+
+* Add column
+  Preference / Appearance / Column
