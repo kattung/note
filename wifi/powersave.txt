@@ -8,3 +8,31 @@ TXOP:   Transmission Oportunity
         When STA wake up, ask to send more than one packet within the period
         VO and VI can do this. they can reserve a exclusive transmission period
 TWT:    Target Wakeup Time
+
+APSD:   Automatic Power-Save Delivery
+U-APSD: Unscheduled APSD
+S-APSD: Scheduled APSD    (no one use it)
+
+Two power saving mechanism:
+1. Legacy
+2. WMMPS (only use U-APSD)
+
+
+Two power saving method for U-APSD:
+1. Triggerd-enabled
+2. Delivery-enabled
+The two will be enabled at the same time automatically.
+To only enable one method, use ADD-TS action frame to set up (no one use it)
+
+For broadcast/multicast, legacy and WMMPS use the same method:
+Use beacon / TIM / DTIM
+
+TIM is in beacon frame, the bitmap in TIM indicate if there's queued data for STA.
+TIM bitmap:
+bit[0] = 1         : there's broadcast/multicast packet
+bit[7:1] has value : there's unicast packet
+                     AID can be gathered from bit[7:0] (wireshark will calculate for you)
+
+DTIM period        : how many TIM will AP send one DTIM
+DTIM count         : the count down of sending DTIM
+                     when count=0, broadcast/multicast will be send in next packet

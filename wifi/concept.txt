@@ -19,6 +19,7 @@ DS:     Distribution System  ==> the other end of AP
 ESS:    Extended Service Set (more than one AP)
         STAs can roaming within the ESS
 WDS:    Wireless Distribution System
+        AP to AP
 SA:     Source Address
 RA:     Receiver Address
 TA:     Transmitter Address
