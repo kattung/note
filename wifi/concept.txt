@@ -5,6 +5,53 @@ VHT:    Very High Throughput    802.11ac
 HT:     High Throughput         802.11n
 legacy:                         802.11b, 802.11a/g
 
+802.11b     (1999)  top link speed: 11M  bps
+802.11a/g   (2003)                  54M  bps
+802.11n     (2009)                  150M bps
+802.11ac    (2013)                  866M bps single spatial stream
+            with 160MHz and 256-QAM 6.97G bps 8 spatial stream
+802.11ax    (2018?) improve 4x average throughput per user
+
+AP:     Access Point
+STA:    Station / Client
+BSS:    Basic Service Set ==> AP + STA
+DS:     Distribution System  ==> the other end of AP
+ESS:    Extended Service Set (more than one AP)
+        STAs can roaming within the ESS
+
+DCF:    Distributed Coordination Function
+        STA compete with each other to use channel
+        Contention and backoff
+PCF:    Point Coordination Function
+        One work as coordinator to decide who to send packet
+        AP sends poll frames to trigger transmission
+DIFS:   DCF Interframe Space
+SIFS:   Short Interframe Space (ex: Ack use this)
+EIFS:   Extended Interface Space (the longest)
+        When data corrupt, the time to wait before next transmition)
+        SIFS + Ack + DIFS
+
+MAC:    Media Access Control
+SA:     Source Address
+RA:     Receiver Address
+TA:     Transmitter Address
+DA:     Destination Address
+SSID:   Service Set Identifier
+BSSID:  Basic SSID (AP link layer AMC address)
+ESSID:  Extended SSID (Domain name, a 32 Byte string)
+
+HEW:    High Efficiency Wireless
+OFDM:   Orthogonal Frequency Division Multiplexing
+OFDMA:  Orthogonal Frequency Division Multiple Access
+CCA:    Carrier Channel Accessment
+NAV:    Network Allocation Vector (includes duration)
+CW:     Contention Window
+WDS:    Wireless Distribution System
+
+RTS:    Request To Send
+CTS:    Clear To Send (now you can send packet)
+CSMA/CA:    Carrier Sense Multiple Access/Collision Avoidance (for Wireless)
+CSMA/CD:    Carrier Sense Multiple Access/Collision Detection (for Wire)
 
 RSSI:   Receive Signal Strength Indication
 CSI:    Channel State Information
@@ -27,3 +74,8 @@ BPSK:   Binary Phase-Shift Keying
 QPSK:   Quadrature Phase-Shift Keying
 QAM:    Quadrature amplitude modulation
 EVM:    Error Vector Magnitude
+
+EOSP:   End of Service Period
+TBTT:   Target Beacon Transmittion Time, usually 100TU (Time Unit)
+
+Frame Format: seq_ctrl: seq number + packet retry count
