@@ -21,3 +21,7 @@ My tunning:
 
 ### Add and remove files
 Project / Add and Remove Project Files...
+
+### Show full file path
+Options / Preference / Display
+Uncheck "Trim long path names with ellipses"
