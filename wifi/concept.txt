@@ -106,6 +106,7 @@ PPDU:   PLCP Protocol Data Unit
 A-MSDU: Aggregate MAC Service Data Unit
 A-MPDU: Aggregate MPDU
 
+ATF:    Air Time Fireness
 TXOP:   Transmit opportunity
         The time duration for which a station can send frames
         after it has gained contention for the transmission medium.
