@@ -106,6 +106,10 @@ PPDU:   PLCP Protocol Data Unit
 A-MSDU: Aggregate MAC Service Data Unit
 A-MPDU: Aggregate MPDU
 
+TXOP:   Transmit opportunity
+        The time duration for which a station can send frames
+        after it has gained contention for the transmission medium.
+
 ---------------------
 Broadcast:  FF:FF:FF:FF
 Multicast:  xx:xx:xx:xx
