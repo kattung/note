@@ -39,3 +39,7 @@ else
 	echo "aaa is not a number"
 	echo $aaa
 fi
+
+### rename -n 's/exp1/exp2/' *.file
+### rename 's/exp1/exp2/' *.file
+rename 's/abc/abc-dd/' *.bin
