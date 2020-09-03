@@ -52,6 +52,8 @@ HEW:    High Efficiency Wireless
 OFDM:   Orthogonal Frequency Division Multiplexing
 OFDMA:  Orthogonal Frequency Division Multiple Access
 CCA:    Carrier Channel Accessment
+CCA:    Clear Channel Assessment
+ED:     Energy detection
 NAV:    Network Allocation Vector (includes duration)
 CW:     Contention Window
         CWmin/CWmax: used by random backoff
