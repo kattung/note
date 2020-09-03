@@ -56,3 +56,6 @@ print_function
 
 ### count match word
 #grep "match_words" file | wc -l
+
+### hex number to decimal
+dec=$((16#$string))
