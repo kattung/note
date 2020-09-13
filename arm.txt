@@ -1,0 +1,38 @@
+ARM assembly
+---------------
+push:   stmfd sp!, {r4-r11, lr}
+pop:    ldmfd sp!, {r4-r11, lr}
+
+stmfd: store multiple full decending
+stmdb: store multiple decrement before
+stmdb = stmfd
+stmfd is a pseudo-instruction for stmdb, referring to its use for
+pushing data onto Full Descending stacks.
+
+psudo code:
+    sp = sp - 9x4   //if ! is ommitted, sp will not be updated
+    address = sp
+    for i = 4 to 11
+        memory[address] = ri
+        address = address + 4
+    memory[address] = lr
+
+            +-----+
+0x4000_0400 | r4  | <- new sp
+            +-----+
+0x4000_0404 | r5  |
+            +-----+
+0x4000_0408 | r6  |
+            +-----+
+0x4000_040c | r7  |
+            +-----+
+0x4000_0410 | r8  |
+            +-----+
+0x4000_0414 | r9  |
+            +-----+
+0x4000_0418 | r10 |
+            +-----+
+0x4000_041c | r11 |
+            +-----+
+0x4000_0420 | lr  | <- old sp
+            +-----+
