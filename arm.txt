@@ -36,3 +36,71 @@ psudo code:
             +-----+
 0x4000_0420 | lr  | <- old sp
             +-----+
+
+Terms
+---------------
+TLB:	Translation Lookaside Buffer
+
+
+Memory barrier
+---------------
+dmb, dsb, isb
+
+dmb: Data Memory Barrier
+make sure all memory access instructions before dmb complete
+and then load/store instructions after dmb can go.
+
+dsb: Data Synchronization Barrier
+make sure all memory access instructions before dsb complete
+and then instructions  (no matter what kind of instruction) after dmb can go.
+
+isb: Instruction Synchronization Barrier
+make sure instruction before isb complete,
+and then fetch intruction from memory/cache.
+It will flush pipeline.
+
+A DMB instruction causes the effect of all data or unified cache maintenance operations appearing in program order
+before the DMB to be visible to all explicit load and store operations appearing in program order after the DMB.
+Also, a DMB instruction ensures that the effects of any data or unified cache maintenance operations
+appearing in program order before the DMB are observable by any observer in the same required shareability domain
+before any data or unified cache maintenance or explicit memory operations appearing in program order
+after the DMB are observed by the same observer.
+**Completion of the DMB does not guarantee the visibility of all data to other observers.
+For example, all data might not be visible to a translation table walk, or to instruction fetches.
+
+A DSB is required to guarantee the completion of all cache maintenance operations
+that appear in program order before the DSB instruction.
+
+A TLB maintenance operation is only guaranteed to be complete after the execution of a DSB instruction.
+
+An ISB instruction, or a return from an exception, causes the effect of all completed
+TLB maintenance operations that appear in program order before the ISB or return from exception
+to be visible to all subsequent instructions, including the instruction fetches for those instructions.
+
+Context synchronization operation:
+	One of:
+	* the execution of an ISB instruction
+	* the taking of an exception
+	* the return from an exception.
+The architecture requires a context synchronization operation to guarantee visibility of
+any change to a system control register.
+
+If a branch instruction appears after an invalidate branch predictor operation
+and before any context synchronization operation, it is UNPREDICTABLE whether
+the branch instruction is affected by the invalidate.
+Software must avoid this ordering of instructions, because it might cause UNPREDICTABLE behavior.
+
+The software sequence to ensure the synchronization of changes to the TEX remap registers is:
+1. Perform a DSB. This ensures any memory accesses using the old mapping have completed.
+2. Write the TEX remap registers or SCTLR.TRE bit.
+3. Perform an ISB. This ensures synchronization of the register updates.
+4. Invalidate the entire TLB.
+5. Perform a DSB. This ensures completion of the entire TLB operation.
+6. Clean and invalidate all caches. This removes any cached information associated with the old mapping.
+7. Perform a DSB. This ensures completion of the cache maintenance.
+8. Perform an ISB. This ensures instruction synchronization.
+
+My conclusion:
+only memory load/store -> use dmb
+cp 15 operation, cache maintenance operation, TLB maintenance operation -> use dsb
+self-modify code, instruction cache maintenance operation, branch predictor operation -> use isb
