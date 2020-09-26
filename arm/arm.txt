@@ -104,3 +104,7 @@ My conclusion:
 only memory load/store -> use dmb
 cp 15 operation, cache maintenance operation, TLB maintenance operation -> use dsb
 self-modify code, instruction cache maintenance operation, branch predictor operation -> use isb
+
+
+---------------
+PCS:	prodecure code standard
