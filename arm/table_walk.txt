@@ -1,0 +1,27 @@
+TTBR:
+* For a Non-secure PL1&0 stage 1 translation, or for a Secure PL1&0 stage 1 translation,
+  either TTBR0 or TTBR1 holds the required base address.
+  The TTBCR is the control register for these translations.
+* The Non-secure copies of TTBR0, TTBR1, and TTBCR, relate to the Non-secure PL1&0 stage 1 translation.
+  The Secure copies of TTBR0, TTBR1, and TTBCR, relate to the Secure PL1&0 stage 1 translation.
+
+For Secure or Non-secure PL1&0 translation table walks:
+
+* TTBR0 can be configured to describe the translation of VAs in the entire address map,
+  or to describe only the translation of VAs in the lower part of the address map
+* If TTBR0 is configured to describe the translation of VAs in the lower part of the address map,
+  TTBR1 is configured to describe the translation of VAs in the upper part of the address map.
+
+
+-----------
+* TTBR:
+  contain the base address of page table.
+
+* Why TTBR0 and TTBR1:
+  TTBR0 for lower address translation (user space)
+  TTBR1 for higher address translation (kernel space and IO mapping)
+  When context switch, only TTBR0 should be changed.
+
+* For each mode (secure / virtualization)
+  There should be different page table, so different TTBR should be used.
+
