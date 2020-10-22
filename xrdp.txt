@@ -1,0 +1,9 @@
+* TAB key does not autocomplete
+  Change key setting
+Method 1. Application / Setting / Windows Manager / Keyboard
+          Find "Switch Windows for same application"
+          Clear setting
+
+Method 2. Edit file
+          ~/.config/xfce4/xfconf/xfce-perchannel-xml$ xfce4-keyboard-shortcuts.xml
+          Look for all Super..Tab and put the value "empty"
