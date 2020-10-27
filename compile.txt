@@ -1,0 +1,6 @@
+### create map file
+Add in LINKFLAGS:
+> armlink:
+  --map --list <map_file>
+> arm-elf-gcc
+  -Wl,-Map,<map_file>
