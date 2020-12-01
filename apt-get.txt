@@ -32,3 +32,11 @@
 * apt-get --purge remove <packagename>
   Uninstall a software (delete the configure files)
   This action is dangerous. It will purge un-related files.
+
+* upgrade python3
+  sudo apt-get update
+  sudo apt install software-properties-common
+  sudo add-apt-repository ppa:deadsnakes/ppa
+  sudo apt-get update
+  sudo apt install python3.7
+  python3.7 --version
