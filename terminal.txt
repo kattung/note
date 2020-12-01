@@ -1,3 +1,8 @@
+* run putty and authentication fail
+  https://devops.ionos.com/tutorials/use-ssh-keys-with-putty-on-windows/#connect-to-server-with-private-key
+  1. Use Existing Public And Private Keys
+  2. Connect To Server With Private Key
+
 * menuconfig corrupted
   https://stackoverflow.com/questions/8483798/tmux-borders-displayed-as-x-q-instead-of-lines/8485457#8485457
   https://bugzilla.redhat.com/show_bug.cgi?id=166291
