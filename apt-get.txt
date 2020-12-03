@@ -43,5 +43,18 @@
 
 * upgrade pip
   python3 -m pip install --user --upgrade pip
-  pip install --upgrade pip
+  pip3 install --upgrade pip
   python3 -m pip install --user --upgrade pip
+
+* install psutil
+  pip3 install --user --upgrade psutil
+
+* If hit error "fatal error: Python.h: No such file or directory"
+  you need to install libpython-dev
+  $ sudo apt install libpython3.7-dev
+
+* if hit error "ModuleNotFoundError: No module named 'gdbm'"
+  $ sudo apt-get install python3.7-gdbm
+
+* if hit error "module 'yaml' has no attribute 'full_load'"
+  $ pip3 install -U PyYAML
