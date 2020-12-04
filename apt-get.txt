@@ -58,3 +58,6 @@
 
 * if hit error "module 'yaml' has no attribute 'full_load'"
   $ pip3 install -U PyYAML
+
+* if hit error: "ERROR: Could not detect Ninja v1.7 or newer"
+  $ pip3 install ninja meson
