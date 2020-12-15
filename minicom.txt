@@ -1,2 +1,8 @@
 lock file:
 /var/lock/LCK..ttyUSB<xxx>
+
+Serial port setu
+-------------------
+E -    Bps/Par/Bits       : 115200 8N1
+F - Hardware Flow Control : No
+G - Software Flow Control : No

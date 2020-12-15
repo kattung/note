@@ -61,3 +61,11 @@
 
 * if hit error: "ERROR: Could not detect Ninja v1.7 or newer"
   $ pip3 install ninja meson
+
+* if hit error:
+  Error: Command '['/scratch/katrionat/work/github/freedom-e-sdk/venv/bin/python3',
+  '-Im', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.
+  root cause:
+  For some reason, Python 3.7 is missing ensurepip module, which is part of the standard python library.
+  This in turn breaks use of venv module with above error message.
+  $ sudo apt install python3.7-venv

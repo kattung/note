@@ -1,0 +1,53 @@
+### check attached USB and SD card
+sudo fdisk -l
+sudo fdisk -l /dev/sdd
+
+### View Mounted Disks and Partitions
+df -h
+
+### Check filesystem
+fsck
+
+### Pratition
+sudo fdisk /dev/sdd
+
+### Format pratition
+sudo mkfs.ext4 /dev/sdd2
+
+### Put rootfs in disk
+rsync the whole rootfs to the mounted directory
+
+
+### check attached USB and SD card on FPGA
+/ # fdisk -l
+Found valid GPT with protective MBR; using GPT
+Disk /dev/mmcblk0: 15523840 sectors, 3484M
+Logical sector size: 512
+Disk identifier (GUID): 0d26fae8-5acd-4c19-acc9-19386f123d70
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 15523806
+
+Number  Start (sector)    End (sector)  Size Name
+     1            2048           67583 32.0M bootloader
+     2           67584        15523806 7546M root
+     3            1100            2020  460K FSBL
+/ # ls /dev/mmc*
+/dev/mmcblk0    /dev/mmcblk0p1  /dev/mmcblk0p2  /dev/mmcblk0p3
+
+===> there are three partition which are mmcblk0p1-p3
+
+### Trouble shooting
+Error: GPT PMBR size mismatch (13926433 != 62333951) will be corrected by w(rite).
+
+Convert GPT to MBR partition
+$ sudo gdisk /dev/sdd
+Command (? for help): ?
+Command (? for help): r
+Recovery/transformation command (? for help): ?
+Recovery/transformation command (? for help): g
+MBR command (? for help): p
+MBR command (? for help): w
+
+Reference: http://www.rodsbooks.com/gdisk/repairing.html
+
+After convertion, you can use fdisk to check/modify disk
