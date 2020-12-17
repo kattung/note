@@ -8,7 +8,9 @@
   4. Check the box for ‘Enable TCP keepalives (SO_KEEPALIVE option)'.
 
   The SSH client asks the server for a sign of life every 15 seconds, thus keeping the connection open.
-  Reference: https://help.dreamhost.com/hc/en-us/articles/215466658-Troubleshooting-PuTTY
+  Reference:
+  https://help.dreamhost.com/hc/en-us/articles/215466658-Troubleshooting-PuTTY
+  https://drupal.star.bnl.gov/STAR/book/export/html/3186
 
 * run putty and authentication fail
   https://devops.ionos.com/tutorials/use-ssh-keys-with-putty-on-windows/#connect-to-server-with-private-key
