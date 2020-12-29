@@ -7,6 +7,8 @@
   $ screen -x <screen_id>
   reattch to existing screen
   $ screen -r
+  rename session
+  Ctrl+j Shift+a
 
 * How to keep SSH connections alive
   DreamHost and other ISPs may kill ssh connections that remain idle longer than a certain number of minutes.
