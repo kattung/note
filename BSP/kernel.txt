@@ -1,3 +1,12 @@
+Spinlock test
+==================
+1. CONFIG_PROVE_LOCKING
+   detect the potential deadlock when booting
+   Lock debugging: prove locking correctness
+
+2. LOCK_TORTURE_TEST
+   Spinlock torture test
+
 tweek:
 ==================
 * Modify stack frames size
