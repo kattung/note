@@ -4,6 +4,15 @@
 ### example output: 20201229
 date +%Y%m%d
 
+
+### Check if a string contains a substring
+string="GNU/Linux is an operating system"
+pattern="Linux"
+if [[ $string == *"$pattern"* ]]; then
+    echo "found pattern"
+fi
+
+
 for (( i=0; i<10; i++))
 do
 	echo $i
