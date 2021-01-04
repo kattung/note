@@ -104,6 +104,7 @@
   git remote add <remote> <url>     (Add remote respoitory)
   git remote remove <remote>        (Remove remote respoitory)
   git remote set-url <remote> <url> (Change remote url)
+  git config --get remote.origin.url (Show remote url)
   git remote update                 (Get update from remote repository)
 
 * Deletes all stale remote-tracking branches
