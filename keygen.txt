@@ -1,0 +1,10 @@
+* Generate public and private key
+  $ ssh-keygen -t rsa
+
+* ssh/copy file from remote without password
+  1. [local] get content of public key
+     cat .ssh/id_rsa.pub
+  2. [remote]
+     vim .ssh/authorized_keys
+     paste the content of public key to
+     .ssh/authorized_keys
