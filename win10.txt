@@ -9,7 +9,7 @@ HOWTO: Change application scaling
    Scalling performed by: 'Application'
 
 
-HOWTO: Archive
+HOWTO: Archive email
 ---------------------
 * Archive mails
   File / Tools / Clean Up Old Items...
