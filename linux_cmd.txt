@@ -1,0 +1,10 @@
+uname -a
+echo `cat /proc/device-tree/model`
+df -h
+cat /proc/mtd
+ping 192.168.1.100 -c 10
+lsblk
+lspci -vv
+stty -F /dev/ttyS1 -a
+stty -F /dev/ttyS1 crtscts
+sync; sync; reboot
