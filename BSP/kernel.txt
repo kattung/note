@@ -1,3 +1,23 @@
+Timebase frequency
+==================
+the time for one tick
+the value is set in dts, and Linux will know how to measure time
+
+for example:
+timebase-frequency=1000000
+1ms per tick -> 10 tick for 1 second
+when Linux receive 10 tick, it knows 1 second passed
+
+when the value is set larger, it means the platform run very fast
+and Linux will wait for more ticks for 1 second to pass
+
+If the value is set wrong,
+for example, FPGA runs 100MHz but set the value to 1GHz
+Linux will wait 10 times ticks when dealing with timer
+So when you run application that ues alarm/timer(sleep)
+It will spend a log more time to run.
+
+
 Spinlock test
 ==================
 1. CONFIG_PROVE_LOCKING
