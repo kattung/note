@@ -33,6 +33,10 @@
   Uninstall a software (delete the configure files)
   This action is dangerous. It will purge un-related files.
 
+* install yaml
+  error message: AttributeError: module 'yaml' has no attribute 'FullLoader'
+  sudo pip3 install PyYAML
+
 * upgrade python3
   sudo apt-get update
   sudo apt install software-properties-common
@@ -40,10 +44,13 @@
   sudo apt-get update
   sudo apt install python3.7
   python3.7 --version
+  (change python3 path)
+  cd /usr/bin/
+  sudo ln -sf python3.7 python
+  sudo ln -sf python3.7m python3m
 
 * upgrade pip
-  python3 -m pip install --user --upgrade pip
-  pip3 install --upgrade pip
+  sudo -H python3 -m pip install --upgrade pip
   python3 -m pip install --user --upgrade pip
 
 * install psutil
@@ -57,7 +64,7 @@
   $ sudo apt-get install python3.7-gdbm
 
 * if hit error "module 'yaml' has no attribute 'full_load'"
-  $ pip3 install -U PyYAML
+  $ pip3 -H install -U PyYAML
 
 * if hit error: "ERROR: Could not detect Ninja v1.7 or newer"
   $ pip3 install ninja meson
@@ -69,3 +76,11 @@
   For some reason, Python 3.7 is missing ensurepip module, which is part of the standard python library.
   This in turn breaks use of venv module with above error message.
   $ sudo apt install python3.7-venv
+
+* serial / pyserial
+  sudo -H pip3 install -I pexpect
+  sudo -H pip3 install pyserial
+  (alternative:)
+  sudo apt-get install python-serial
+  sudo -H pip3 uninstall serial
+  sudo -H pip3 uninstall pyserial
