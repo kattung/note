@@ -8,3 +8,6 @@ lspci -vv
 stty -F /dev/ttyS1 -a
 stty -F /dev/ttyS1 crtscts
 sync; sync; reboot
+
+### check system devices
+ls /sys/devices/platform/soc
