@@ -1,3 +1,10 @@
+* git bisect
+# git bisect start (start git bisect)
+# git bisect reset (exit  git bisect)
+# git status
+# git bisect good <commit>
+# git bisect bad <commit>
+
 * MINGW64: cannot use vim when 'git commit'
     Error message: "cannot spawn /usr/bin/vim: No such file or directory"
     Solution 1: set core.editor to 'vim' only
@@ -134,6 +141,11 @@
 - git stash       (stash un-stage changes)
   git stash show  (show stashed changes)
   git stash apply (get stashed changes back to working directory)
+  git stash list  (show all the stashes)
+  git stash show -p <index> (show stash content)
+    ex: git stash show -p stash@{2}
+  git stash apply --index <index> (apply one stash)
+    ex: git stash apply --index stash@{2}
 
 - git diff      (Show un-stage changes)
   git diff <branch/commit> (Show difference between given branch/commit and current status)
