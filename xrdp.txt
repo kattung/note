@@ -7,3 +7,4 @@ Method 1. Application / Setting / Windows Manager / Keyboard
 Method 2. Edit file
           ~/.config/xfce4/xfconf/xfce-perchannel-xml$ xfce4-keyboard-shortcuts.xml
           Look for all Super..Tab and put the value "empty"
+          https://codemarvels.com/2017/06/12/bash-on-vnc-session-tabs-do-not-auto-complete/
