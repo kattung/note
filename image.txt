@@ -1,0 +1,11 @@
+How to create image from rootfs directory
+--------------
+Use dd + fdisk + mkfs + mount
+
+Create a raw disk image file using dd if=/dev/zero of=image.raw bs=1M count=50 That will make a 50 megabyte image file out of zeros.
+
+If you want to operate on a block device instead of a file, you can loopback mount image.raw as a block device (read losetup man page)
+
+You can partition the file or loopback device using regular fdisk or sfdisk utilities. Then you can either use other dd options (read the man page for it) or other options to put your bin files into the right places in the disk image.
+
+After that, undo the loopback device if you made one, and start your qemu / qemu-kvm session using the image.raw file as your disk device. If you did your bootloader correctly the qemu bios will start it.
