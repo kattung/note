@@ -1,3 +1,6 @@
+* list files in git repository
+# git ls-files
+
 * git bisect
 # git bisect start (start git bisect)
 # git bisect reset (exit  git bisect)
