@@ -1,3 +1,15 @@
+* git log pretty format
+  - Placeholders that affect formatting of later placeholders
+    %<|(<N>): make the next placeholder take at least until Nth columns,
+              padding spaces on the right if necessary
+  - Placeholders:
+    %h:  commit hash
+    %an: author name
+    %as: author date
+    %s:  subject
+  - Example:
+    git log --oneline --pretty=format:"%h %as %<(18)%an %s" -10
+
 * list files in git repository
 # git ls-files
 
