@@ -1,4 +1,5 @@
 * git log pretty format
+  https://git-scm.com/docs/git-shortlog
   - Placeholders that affect formatting of later placeholders
     %<|(<N>): make the next placeholder take at least until Nth columns,
               padding spaces on the right if necessary
