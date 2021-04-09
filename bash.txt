@@ -1,3 +1,8 @@
+How to change primary group
+----------
+# usermod -g group user
+
+
 change dir permission only
 ----------
 Method 1:
