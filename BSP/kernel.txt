@@ -76,3 +76,33 @@ For 32bit ARM cpu, change as below
 linux code explanation
 ==================
 https://eeepage.info/sk_buff-packet
+
+
+Check config
+==================
+# zcat /proc/config.gz
+
+Check bootargs
+==================
+# cat /proc/cmdline
+loglevel=8 initcall_debug earlycon=sifive,0x20000000 console=ttySIF0,115200
+
+Config that enable earlycon
+==================
+# zcat /proc/config.gz| grep CONFIG_SERIAL_EARLYCON
+CONFIG_SERIAL_EARLYCON=y
+CONFIG_SERIAL_EARLYCON_RISCV_SBI=y
+
+
+debug
+==================
+* Build kernel with below config, and you can use backtrace in gdb
+  CONFIG_DEBUG_INFO
+  ---
+  Kernel hacking
+   --> Compile-time checks and compiler options
+   ----> Compile the kernel with debug info
+  ---
+
+* Check if vmlinux contains debug message
+  objdump -d -Sl vmlinux
