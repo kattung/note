@@ -9,3 +9,13 @@ If you want to operate on a block device instead of a file, you can loopback mou
 You can partition the file or loopback device using regular fdisk or sfdisk utilities. Then you can either use other dd options (read the man page for it) or other options to put your bin files into the right places in the disk image.
 
 After that, undo the loopback device if you made one, and start your qemu / qemu-kvm session using the image.raw file as your disk device. If you did your bootloader correctly the qemu bios will start it.
+
+Example:
+dd if=/dev/zero of=rootfs_all_210423.img bs=1G count=5
+sudo fdisk -l rootfs_all_210423.img
+sudo mkfs.ext4 rootfs_all_210423.img
+sudo mount rootfs_all_210423.img ~/mnt
+sudo rsync -avH <rootfs_dir>/* ~/mnt
+
+after boot Linux on QEMU:
+mount /dev/vda /mnt
