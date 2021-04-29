@@ -8,3 +8,11 @@
      vim .ssh/authorized_keys
      paste the content of public key to
      .ssh/authorized_keys
+
+Trouble shooting
+-----------
+
+* Error message:
+  Warning: the ECDSA host key for '<a_server>' differs from the key for the IP address '192.168.10.xx'
+  > Solution:
+    # ssh-keygen -R 192.168.10.xx
