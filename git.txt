@@ -149,6 +149,8 @@
   git show <tag_name>            (Show tag content)
   git push <remote> <tag_name>   (Push one tag to remote repository)
   git push <remote> --tags       (Push all tags to remote repository)
+  git fetch --tags               (Fetch only tags, but not specify remote)
+  git fetch <remote> 'refs/tags/*:refs/tags/* (Fetch only tags from a specific remote)
 
 * git fetch one tag without download all repository
 # git fetch <remote> tag <tag> --no-tags
