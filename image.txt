@@ -1,3 +1,28 @@
+How to program SD card
+-------------
+xzcat rootfs.wic.xz | sudo dd of=/dev/sdX bs=512K iflag=fullblock oflag=direct conv=fsync status=progress
+
+
+How to resize SD partition and reprogram
+-------------
+sudo sgdisk -v /dev/sdc
+sudo sgdisk -e /dev/sdc
+sudo parted /dev/sdc resizepart 4 100%
+sudo resize2fs /dev/sdc4
+sync
+(until now the partition still not resized,
+ you should use fdisk or mkfs to manipulate it)
+
+method 1: use 'fdisk' to delete and create a new partition
+method 2: use 'mkfs' to format the partition, and it will be the right size
+
+Example:
+sudo mkfs.ext4 /dev/sdc4
+sudo mount /dev/sdc4 ~/mnt
+cd ~/mnt
+sudo rsync -avH /rootfs/* .
+
+
 How to create image from rootfs directory
 --------------
 Use dd + fdisk + mkfs + mount
