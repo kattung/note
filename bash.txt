@@ -6,6 +6,11 @@ Disable bell
    ---
 2. $ bind -f ~/.inputrc
 
+Or just put this in .bashrc
+   ---
+   bind 'set bell-style none'
+   ---
+
 
 How to change primary group
 ----------
