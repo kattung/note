@@ -1,0 +1,27 @@
+Generate coredump when user program fail (Segmentation fault)
+
+* Enable coredump
+  $ ulimit -c unlimited
+
+* Make name of coredump more readable
+  $ echo "core.%e.%p.%t" | tee /proc/sys/kernel/core_pattern
+
+The coredump will be generated in working directory
+
+* How to check the environment is ok to do coredump:
+  Write a simple program
+  ---
+  #include <stdio.h>
+
+  int main()
+  {
+      int *a = 0;
+      printf("hello\n");
+      printf("a = %x\n", *a);
+      return 0;
+  }
+  ---
+  $ gcc hello.c
+  $ ./a.out
+
+  It will generate coredump like 'core.a.out.990.1608221399'
