@@ -113,3 +113,9 @@ Note: For ChangJie, you should also do the part for Boponmofo, then the hotkey c
 |Shift + Space | switch between Full/Half                  |
 |Ctrl  + Shift | switch between input in the same Language |
 |Win   + Space | switch between all inputs                 |
+
+
+
+Disable system beep
+---------------------
+https://www.thewindowsclub.com/disable-system-beep-windows-7-8
