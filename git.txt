@@ -1,3 +1,11 @@
+* set upstream
+  If unable to push to remote, it may be the problem of not setting track
+  use '-u' when git push
+  example:
+  git push origin test_branch ==> encounter error
+  use below instead
+  git push -u origin test_branch
+
 * git log pretty format
   https://git-scm.com/docs/git-shortlog
   - Placeholders that affect formatting of later placeholders
