@@ -8,7 +8,7 @@ df -h
 ### Check filesystem
 fsck
 
-### Pratition
+### Partition
 sudo fdisk /dev/sdd
 
 ### Format pratition
