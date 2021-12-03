@@ -1,3 +1,9 @@
+Set input character delay
+-------------------
+Ctrl+a + T --> Terminal Setting
+           ---> F - Character tx delay (ms): 0
+                --> change the value to 2
+
 Set up udev rules for ttyUSB
 -------------------
 1. Get information
