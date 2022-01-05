@@ -1,3 +1,14 @@
+* force push
+# git push --force
+  It is highly recommended using '--force-with-lease' over '--force',
+  since it has a few more safety mechanisms built in.
+# git push --force-with-lease
+  This option allows you to say that you expect the history you are updating
+  is what you rebased and want to replace. If the remote ref still points at the commit
+  you specified, you can be sure that no other people did anything to the ref.
+  It is like taking a "lease" on the ref without explicitly locking it,
+  and the remote ref is updated only if the "lease" is still valid.
+
 * set upstream
   If unable to push to remote, it may be the problem of not setting track
   use '-u' when git push
