@@ -1,3 +1,8 @@
+Set timestamp
+-------------------
+Ctrl+a + N --> Timestamp toggle
+
+
 Set input character delay
 -------------------
 Ctrl+a + T --> Terminal Setting
