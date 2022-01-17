@@ -76,11 +76,3 @@
   For some reason, Python 3.7 is missing ensurepip module, which is part of the standard python library.
   This in turn breaks use of venv module with above error message.
   $ sudo apt install python3.7-venv
-
-* serial / pyserial
-  sudo -H pip3 install -I pexpect
-  sudo -H pip3 install pyserial
-  (alternative:)
-  sudo apt-get install python-serial
-  sudo -H pip3 uninstall serial
-  sudo -H pip3 uninstall pyserial

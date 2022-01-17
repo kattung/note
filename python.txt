@@ -1,0 +1,32 @@
+* upgrade python3
+  sudo apt-get update
+  sudo apt install software-properties-common
+  sudo add-apt-repository ppa:deadsnakes/ppa
+  sudo apt-get update
+  sudo apt install python3.7
+  python3.7 --version
+  (change python3 path)
+  cd /usr/bin/
+  sudo ln -sf python3.7 python
+  sudo ln -sf python3.7m python3m
+
+* upgrade pip
+  sudo -H python3 -m pip install --upgrade pip
+  python3 -m pip install --user --upgrade pip
+
+* install venv
+  $ sudo apt install python3.7-venv
+
+* serial / pyserial
+  sudo -H pip3 install -I pexpect
+  sudo -H pip3 install pyserial
+  (alternative:)
+  sudo apt-get install python-serial
+  sudo -H pip3 uninstall serial
+  sudo -H pip3 uninstall pyserial
+
+* python virtual environment
+  https://docs.python.org/zh-tw/3/tutorial/venv.html
+  $ python3 -m venv env
+  $ source env/bin/activate
+  $ python3 -m pip install pyfdt pyserial pexpect
