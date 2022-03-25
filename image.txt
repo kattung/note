@@ -1,3 +1,21 @@
+Extend ext4 image size
+-------------
+sudo e2fsck -f <ext4_file>
+sudo resize2fs <ext4_file> 16G
+
+
+Modify ext4 content
+-------------
+debugfs -w -f $cmd_file $new_ext4
+
+cmd_file example
+---
+cd /home/root/
+write <host_dir>/400.perlbench.tgz 400.perlbench.tgz
+symlink <dest> <source>
+---
+
+
 How to program SD card
 -------------
 xzcat rootfs.wic.xz | sudo dd of=/dev/sdX bs=512K iflag=fullblock oflag=direct conv=fsync status=progress
