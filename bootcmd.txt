@@ -30,6 +30,12 @@ the "console=ttyXX" is required for kernel to setup uart
 possible setup:
 loglevel=8 initcall_debug earlycon=sbi root=/dev/mmcblk0p2 rootwait,0x20000000 console=ttyXX,115200
 
+## Boot kernel with rootfs in initramfs
+setenv bootargs "loglevel=8 initcall_debug earlycon=sifive,0x20000000 console=ttySIF0,115200 root=/dev/ram0 rdinit=/bin/sh"
+
+## Boot kernel with rootfs in SD card
+setenv bootargs "loglevel=8 initcall_debug earlycon=sifive,0x20000000 console=ttySIF0,115200 root=/dev/mmcblk0p4 rootfstype=ext4 rootwait"
+
 ## Boot kernel with rootfs in USB
 usb stop; usb start
 fatload usb 0:1 0x2000000 Image
