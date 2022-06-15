@@ -1,6 +1,17 @@
 #/bin/bash
 ### use command: ./bash_inputpara.sh xxx xdb 2 ###
 
+#input_para="aa"
+#echo "var    --> ${input_para}"
+#echo "var+x  --> ${input_para+x}"
+echo "var:+x --> ${input_para:+x}"
+
+if [ ! -z ${1:+x} ]; then
+    echo "input: ${1}"
+else
+    echo "there no input"
+fi
+
 if [ -z "$1" ]; then #if first parameter is empty 
 	echo empty
 else
