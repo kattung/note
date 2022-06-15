@@ -1,3 +1,24 @@
+* run git outside of directory
+  git -C <path> <command>
+
+  -C <path>
+       Run as if git was started in <path> instead of the current
+       working directory. When multiple -C options are given, each
+       subsequent non-absolute -C <path> is interpreted relative to
+       the preceding -C <path>.
+
+       This option affects options that expect path name like --git-dir
+       and --work-tree in that their interpretations of the path names
+       would be made relative to the working directory caused by the -C option.
+       For example the following invocations are equivalent:
+
+           git --git-dir=a.git --work-tree=b -C c status
+           git --git-dir=c/a.git --work-tree=c/b status
+
+  example:
+  git -C ~/my-git-repo checkout -b new_branch origin/new_branch
+
+
 * force push
 # git push --force
   It is highly recommended using '--force-with-lease' over '--force',
@@ -293,6 +314,12 @@
           git push <remote> <remote_branch>
      4.b. use comma before branch name when push will delete remote branch
           git push <remote> :<remote_branch>
+  5. If you need to modify commits and push to the same branch
+     (for example: fix pull request and push again)
+    5.a. Use below method to modify your commit
+         * git commit --amend (can fix comment, author, etc)
+         * git rebase -i (can merge commits, fix/reorder commits, modify comments, etc)
+    5.b. git push --force <remote> <remote_branch>
 
 
 * modify the first commit with 'git rebase':
