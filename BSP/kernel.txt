@@ -1,3 +1,10 @@
+Set below to avoid systemd hidding Linux message
+==================
+After booting Linux, in rootfs console
+$ systemctl log-level 7
+
+
+
 initramfs
 ==================
 CONFIG_BLK_DEV_INITRD=y
