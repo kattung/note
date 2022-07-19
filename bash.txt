@@ -1,3 +1,29 @@
+Create hard link to save space
+----------
+You can use hard link to back up file.
+The hard link will be a lot smaller than original file.
+It re-use inode in file system level,
+so when the original file is deleted, the hard-link
+will become the same situation as the original one.
+
+Note:
+1. This cannot be done cross disk partition.
+2. When content in back up file is modified, the original one will be changed also.
+
+Command:
+$ cp -rdl <src> <dst>
+
+Example:
+$ cp -rdl  2022-07-12_57-backup
+$ du -sh 2022-07-12_57*
+  9.4G    2022-07-12_57
+  20K     2022-07-12_57-backup
+$ rm -r 2022-07-12_57
+$ du -sh 2022-07-12_57-backup
+  9.4G    2022-07-12_57-backup
+
+
+
 Disable bell
 ----------
 1. Add below in file '~/.inputrc'
