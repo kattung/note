@@ -215,6 +215,7 @@
 
 - git show <git_commit> (Show content of a commit)
   git show <git_commit> --name-only (Only show files that modified in this commit)
+  git show <git_commit> --pretty=fuller (Also show merge date/commit date)
 
 - git rm          (Remove a file from both git tree and directory)
 - git rm --cache  (Remove a file from both git tree, but keep in directory)
