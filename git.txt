@@ -1,3 +1,11 @@
+* show time in PST when git show/log
+  This only need to be done once, and it will write below to ~/.gitconfig
+  1. If your server is in PST time
+     $ git config --global log.date local
+
+  2. Your server want to show another time
+     $ TZ=UTC+8 git log --date=format-local:'%T %d %m %Y'
+
 * run git outside of directory
   git -C <path> <command>
 
