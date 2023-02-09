@@ -1,10 +1,41 @@
-* show time in PST when git show/log
-  This only need to be done once, and it will write below to ~/.gitconfig
-  1. If your server is in PST time
-     $ git config --global log.date local
+* allow large file in git
+  Note: Do not modify .gitattributes by yourself
 
-  2. Your server want to show another time
-     $ TZ=UTC+8 git log --date=format-local:'%T %d %m %Y'
+  1. Install git lfs (may have installed by default)
+  2. Provide filename that need to be tracked
+     example: *.tar.bz2
+     $ git lfs track "*.tar.bz2"
+     You will see below line added to .gitattributes
+     ---
+     *.tar.bz2 filter=lfs diff=lfs merge=lfs -text
+     ---
+  3. Commit new files (*.tar.bz2)
+     The files will be tracked by Git LFS
+  4. Check which files are tracked as LFS
+     $ git lfs ls-files
+
+  Not tracked files will encounter error of "should have been pointers"
+  Reference: https://ephrain.net/git-git-clone-%E6%99%82%E5%87%BA%E7%8F%BE-encountered-xx-files-that-should-have-been-pointers-but-werent-%E7%9A%84%E9%8C%AF%E8%AA%A4%E8%A8%8A%E6%81%AF/
+
+* show time in PST git
+  > git show/log
+    This only need to be done once, and it will write setting to ~/.gitconfig
+    1. If your server is in PST time
+       $ git config --global log.date local
+
+       ~/.gitconfig
+       ---
+       [log]
+           date = local
+       ---
+
+    2. Your server want to show another time
+       $ TZ=UTC+8 git log --date=format-local:'%T %d %m %Y'
+  > tig
+    Write below in ~/.tigrc
+    ---
+    set main-view-date-local = yes
+    ---
 
 * run git outside of directory
   git -C <path> <command>
