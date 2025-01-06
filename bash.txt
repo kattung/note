@@ -1,3 +1,15 @@
+Untar a file from tarball
+----------
+abc.bz2 has below content
+test
+ ├─ a.a
+ ├─ b.b
+ └─ c.c
+ Below command will only extract c.c from tarbal
+ $ tar xvf test.bz2 test/c.c
+
+
+
 Create hard link to save space
 ----------
 You can use hard link to back up file.
