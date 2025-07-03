@@ -408,17 +408,29 @@
 * Rebase current branch with a new base instead of old base
   Use case: applying a group of patches from one branch to another
 - git rebase --onto <new_base> <current_base> --strategy recursive
-  example:
-  new_base:     commit or another_branch
-  current_base: commit (the base that will be replaced)
+  * example 1: rebase to another branch
 
-  current_branch: commit_5638e8b + patches
-  we want new_branch to become: new_base + patches
+    new_base:     commit or another_branch
+    current_base: commit (the base that will be replaced)
 
-  # git checkout current_branch
-  # git checkout -b new_branch
-  # git rebase --onto new_base 5638e8b
-  (the new_branch will have new_base + paches after commit 5638e8b)
+    current_branch: commit_5638e8b + patches
+    we want new_branch to become: new_base + patches
+
+    # git checkout current_branch
+    # git checkout -b new_branch
+    # git rebase --onto new_base 5638e8b
+    (the new_branch will have new_base + paches after commit 5638e8b)
+
+  * example 2: rebase to older git hash
+
+    `current_branch_with_changes` is based on `current_base` which includes `older_base`
+    we want to rebase changes on older_base
+
+    older_base -> current_base -> changes (current_branch_with_change)
+    becomes
+    older_base -> changes
+
+    # git rebase --onto older_base current_base current_branch_with_change
 
 * Create bare repository on remote site
   1. clone a bare repository
