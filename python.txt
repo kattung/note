@@ -1,3 +1,9 @@
+* Online command to test function in python script
+  python -c "import logging; logging.basicConfig(level=logging.INFO); from pathlib import Path; from
+   folder1.folder2.file1 import my_func; result =
+   my_func(Path('~/input1.dts'), Path('another.file')); print(result)"
+
+
 * upgrade python3
   sudo apt-get update
   sudo apt install software-properties-common
