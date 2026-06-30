@@ -11,3 +11,10 @@ sync; sync; reboot
 
 ### check system devices
 ls /sys/devices/platform/soc
+
+### record everything on terminal including commands and stdout
+### log will be `typescript` by default
+### to stop record, type `exit`
+Usage:
+script transcript.log
+script -a transcript.log // append
