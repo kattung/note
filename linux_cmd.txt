@@ -18,3 +18,6 @@ ls /sys/devices/platform/soc
 Usage:
 script transcript.log
 script -a transcript.log // append
+
+Remove control character
+col -b < transcript.log > clean.log
